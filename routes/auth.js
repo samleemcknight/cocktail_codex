@@ -21,7 +21,7 @@ router.post('/signup', (req, res) => {
     if (created) {
       // success
       passport.authenticate('local', {
-        successRedirect: '/search',
+        successRedirect: '/cocktails',
         successFlash: 'Account created and user logged in!'
       })(req, res)
     } else {
@@ -44,8 +44,8 @@ router.get('/login', (req, res) => {
 
 // POST ROUTE - EXISTING USER LOGIN 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/views/search',
-  failureRedirect: '/auth/login',
+  successRedirect: '/cocktails',
+  failureRedirect: '/login',
   successFlash: 'You have logged in!',
   failureFlash: 'Invalid username and/or password.'
 }))

@@ -6,17 +6,17 @@ const db = require("../models")
 // ROUTERS COCKTAILS
 
 // GET ROUTE FOR SEARCH
-router.get('/cocktails', isLoggedIn, (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
     res.render('search');
 });
 
 // GET ROUTE - list info about specific drink with add to myCocktails functionality 
-router.get('/cocktails/:id', isLoggedIn, (req, res) => {
+router.get('/:id', isLoggedIn, (req, res) => {
     res.render('show');
 });
 
 // POST ROUTE - when user adds to my favorites from 1Cocktail Get Page
-router.post('/cocktails/:id', isLoggedIn, (req, res) => {
+router.post('/:id', isLoggedIn, (req, res) => {
     res.redirect('/cocktails');
 });
 
