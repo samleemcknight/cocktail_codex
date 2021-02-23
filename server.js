@@ -42,15 +42,25 @@ app.use((req, res, next) => {
 })
 
 
+// IN BROCK'S TEMPLATE, GET ROUTES FOR HOME PAGE - DO I HAVE TO PUT THE PATH FOR THE REDIRECT IN THIS?
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('./auth/login');
 });
 
+// IN BROCK'S TEMPLATE, GET route for profile page
 app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');
 });
 
+// NOT IN BROCK'S TEMPLATE, GET ROUTE FOR LOGOUT PAGE
+app.get('/logout', (req, res) => {
+  res.render('logout');
+});
+
 app.use('/auth', require('./routes/auth'));
+
+// MIDDLEWARE FOR COCKTAIL CONTROLLERS
+app.use('/cocktails', require('./routes/cocktails'))
 
 const server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 
