@@ -20,9 +20,9 @@ The relational database will be a Many-to-Many with 3 tables: user account info 
 
 # ERD PAGE
 
-## Instalation:
+## Installation:
 * Create an `.env' file and put your own session secret in it.
-  *Ex.: ```SESSION_SECRET=bleepbloopformetoo```
+  * Ex.: ```SESSION_SECRET=bleepbloopformetoo```
 * Run ```npm install```
 * Create a database: ```createdb cocktail_codex_development```
 * Migrate the database: ```sequelize db:migrate```
