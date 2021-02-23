@@ -1,4 +1,6 @@
 'use strict';
+const models = require('../models');
+const cocktail = models.cocktail;
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -410,7 +412,7 @@ module.exports = {
     {
       name: 'Mudslide',
       primaryAlcohol: 'vodka',
-      recipe: '1 oz. vodka, 1 oz. kahlua, 1 oz. bailey's irish cream, 1 oz.cream',
+      recipe: '1 oz. vodka, 1 oz. kahlua, 1 oz. bailey\'s irish cream, 1 oz.cream',
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -429,7 +431,7 @@ module.exports = {
       updatedAt: new Date()
     },
   ], {});
-    
+
   },
 
   down: async (queryInterface, Sequelize) => {
