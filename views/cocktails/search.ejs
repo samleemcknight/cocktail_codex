@@ -8,13 +8,7 @@
 <!-- p tag with 1 line copy influecing the formatting of the user input -->
 <p>When you see a drink you like, you can add it to your favorites by clicking the button below.</p>
 </div>
-<!-- 2 In-Line Buttons -
-Button Left - Submit
-Button Right - Clear -->
-<div class="ButtonRow">
-<button type="button">Submit Search</button>
-<button type="button">Clear </button>
-</div>
+
 <!-- Form Fill -->
 <div class="searchForm">
 <form action="/" method="GET">
@@ -22,6 +16,13 @@ Button Right - Clear -->
 <label for ="formField">Pick Your Poison.</label>
 <input type="text" class="formField" id="formField" name="formField" value="Cocktail Name" required>
 </div>
+<!-- 2 In-Line Buttons -
+Button Left - Submit
+Button Right - Clear -->
+<div class="ButtonRow">
+    <button type="button">Submit Search</button>
+    <button type="button">Clear </button>
+    </div>
 </form>
 </div>
 
@@ -29,46 +30,42 @@ Button Right - Clear -->
 <!-- Returned Search Results -->
 <div class=searchResults>
 <table>
+<thead>
 <tr>
-    <th>ID</th>
     <th>Cocktail Name</th>
     <th>Primary Alcohol</th>
     <th>Recipe</th>
     <th>Select</th>
 </tr>
-<tr>
-<!-- ROWS ARE A FOR EACH RETURNED SEARCH RESULT INCLUDING THE SELECT BUTTON -->
-<td>1</td>
-<td>Name</td>
-<td>Prime</td>
-<td>Recipe</td>
-<td><input type="radio" value="submit" onclick="FUNCTION TO SHOW THATS BEEN SELECTED"></td>
-</tr>
-<!-- SELECT ROW BUTTON <td><input type="radio" value="submit" onclick= "FUNCTION TO SHOW THATS BEEN SELECTED"-->
+</thead>
+<% cocktails.forEach(function(cocktail) { %>
+    <form method="POST" action="/myFavorites">
+    <tr>
+    <td><%= cocktail.name%></td>
+    <td><%= cocktail.primaryAlcohol%></td>
+    <td><%= cocktail.recipe%></td>
+    <td><input type="radio" value="selectedDrink"></td>
+    </tr>
+    <%})%> 
+    </form>
 </table>
 </div>
+<div class="addFavorites">
+    <button type="button">Add to Favorites</button>
+    </div>
+
 <!-- Can't recall if you have to div every element in a table in bootstrap, reference later -->
 
-
+<!-- SELECT ROW BUTTON <td><input type="radio" value="submit" onclick= "FUNCTION TO SHOW THATS BEEN SELECTED"-->
 
 
 <!-- Button that appears after results search "Add to Favorites" -->
-<div class="addFavorites">
-<button type="button">Add to Favorites</button>
-</div>
 
 
 
 
 
-
-
-
-
-<!-- JS -->
-
-
-
+    
 
 
 
