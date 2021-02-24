@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('../config/ppConfig')
 const db = require("../models")
+const isLoggedIn = require('../middleware/isLoggedIn')
 
 // ROUTERS COCKTAILS
 
@@ -17,7 +18,7 @@ router.get('/:id', isLoggedIn, (req, res) => {
 
 // POST ROUTE - when user adds to my favorites from 1Cocktail Get Page
 router.post('/:id', isLoggedIn, (req, res) => {
-    res.redirect('/cocktails');
+    res.redirect('/');
 });
 
 // GET ROUTE - users favorites
