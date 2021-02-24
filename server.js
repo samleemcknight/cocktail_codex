@@ -52,11 +52,6 @@ app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');
 });
 
-// NOT IN BROCK'S TEMPLATE, GET ROUTE FOR LOGOUT PAGE
-app.get('/logout', (req, res) => {
-  res.render('logout');
-});
-
 app.use('/auth', require('./routes/auth'));
 
 // MIDDLEWARE FOR COCKTAIL CONTROLLERS

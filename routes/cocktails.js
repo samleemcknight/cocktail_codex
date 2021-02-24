@@ -8,7 +8,7 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 
 // GET ROUTE FOR SEARCH
 router.get('/', isLoggedIn, (req, res) => {
-    res.render('search');
+    res.render('cocktails/search');
 });
 
 // GET ROUTE - list info about specific drink with add to myCocktails functionality 
