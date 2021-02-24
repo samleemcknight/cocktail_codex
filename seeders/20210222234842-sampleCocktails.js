@@ -367,13 +367,6 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      name: 'Black Russian',
-      primaryAlcohol: 'vodka',
-      recipe: '1.5 oz. vodka, .75 oz. Kahlua, .5 oz. cream',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
       name: 'Kamikaze',
       primaryAlcohol: 'vodka',
       recipe: '2 oz. vodka, .5 oz. cointreau, .25 oz. lime juice',
@@ -438,7 +431,7 @@ module.exports = {
     },
   ], {returning: true});
   
-    console.log('bulk insert: ', bulkCocktails)
+    // console.log('bulk insert: ', bulkCocktails)
 
     await queryInterface.bulkDelete('ingredients', null, {
       truncate: true,
@@ -830,14 +823,38 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      name: 'Bitters',
+      name: 'bitters',
+      isAlcohol: 'N',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      name: 'lemon juice',
+      isAlcohol: 'N',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      name: 'lime juice',
+      isAlcohol: 'N',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      name: 'olive brine',
+      isAlcohol: 'N',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      name: 'heavy cream',
       isAlcohol: 'N',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     ], { returning: true });
-    console.log('bulk insert: ', bulkIngredients)
-
+    // console.log('bulk insert: ', bulkIngredients)
+    
     await queryInterface.bulkDelete('cocktailsIngredients', null, {truncate: true,
       cascade: true, restartIdentity: true});
     
@@ -875,6 +892,985 @@ module.exports = {
       {
         cocktailId: bulkCocktails[4].id,
         ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      //boilermaker
+      {
+        cocktailId: bulkCocktails[5].id,    
+        ingredientId: bulkIngredients[2].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      //french connection
+      {
+        cocktailId: bulkCocktails[6].id,
+        ingredientId: bulkIngredients[1].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[6].id,
+        ingredientId: bulkIngredients[15].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // sidecar
+      {
+        cocktailId: bulkCocktails[7].id,
+        ingredientId: bulkIngredients[21].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[7].id,
+        ingredientId: bulkIngredients[10].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[7].id,
+        ingredientId: bulkIngredients[65].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // gimlet
+      {
+        cocktailId: bulkCocktails[8].id,
+        ingredientId: bulkIngredients[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[8].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // martini
+      {
+        cocktailId: bulkCocktails[9].id,
+        ingredientId: bulkIngredients[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[9].id,
+        ingredientId: bulkIngredients[9].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // dirty martini
+      {
+        cocktailId: bulkCocktails[10].id,
+        ingredientId: bulkIngredients[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[10].id,
+        ingredientId: bulkIngredients[9].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[10].id,
+        ingredientId: bulkIngredients[67].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Golden Cadillac
+      {
+        cocktailId: bulkCocktails[11].id,
+        ingredientId: bulkIngredients[11].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[11].id,
+        ingredientId: bulkIngredients[32].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[11].id,
+        ingredientId: bulkIngredients[68].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Bacardi Cocktail
+      {
+        cocktailId: bulkCocktails[12].id,
+        ingredientId: bulkIngredients[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[12].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Cuba Libre
+      {
+        cocktailId: bulkCocktails[13].id,
+        ingredientId: bulkIngredients[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[13].id,
+        ingredientId: bulkIngredients[46].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Daiquiri
+      {
+        cocktailId: bulkCocktails[14].id,
+        ingredientId: bulkIngredients[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[14].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Tequila and Cactus Cooler
+      {
+        cocktailId: bulkCocktails[15].id,
+        ingredientId: bulkIngredients[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Compadre
+      {
+        cocktailId: bulkCocktails[16].id,
+        ingredientId: bulkIngredients[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[16].id,
+        ingredientId: bulkIngredients[51].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[16].id,
+        ingredientId: bulkIngredients[22].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[16].id,
+        ingredientId: bulkIngredients[42].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Matador 
+      {
+        cocktailId: bulkCocktails[17].id,
+        ingredientId: bulkIngredients[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[17].id,
+        ingredientId: bulkIngredients[57].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[17].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Margarita
+      {
+        cocktailId: bulkCocktails[18].id,
+        ingredientId: bulkIngredients[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[18].id,
+        ingredientId: bulkIngredients[10].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[18].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Mexican Madras
+      {
+        cocktailId: bulkCocktails[19].id,
+        ingredientId: bulkIngredients[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[19].id,
+        ingredientId: bulkIngredients[50].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[19].id,
+        ingredientId: bulkIngredients[49].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[19].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Tequila Sunrise
+      {
+        cocktailId: bulkCocktails[20].id,
+        ingredientId: bulkIngredients[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[20].id,
+        ingredientId: bulkIngredients[49].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[20].id,
+        ingredientId: bulkIngredients[42].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Bay Breeze
+      {
+        cocktailId: bulkCocktails[21].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[21].id,
+        ingredientId: bulkIngredients[50].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[21].id,
+        ingredientId: bulkIngredients[57].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Black Russian
+      {
+        cocktailId: bulkCocktails[22].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[22].id,
+        ingredientId: bulkIngredients[13].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Bloody Mary
+      {
+        cocktailId: bulkCocktails[23].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[23].id,
+        ingredientId: bulkIngredients[63].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[23].id,
+        ingredientId: bulkIngredients[62].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[23].id,
+        ingredientId: bulkIngredients[52].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[23].id,
+        ingredientId: bulkIngredients[65].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Cape Cod
+      {
+        cocktailId: bulkCocktails[24].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[24].id,
+        ingredientId: bulkIngredients[50].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[24].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Cosmopolitan
+      {
+        cocktailId: bulkCocktails[25].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[25].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[25].id,
+        ingredientId: bulkIngredients[10].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[25].id,
+        ingredientId: bulkIngredients[50].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Greyhound
+      {
+        cocktailId: bulkCocktails[26].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[26].id,
+        ingredientId: bulkIngredients[51].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Screwdriver
+      {
+        cocktailId: bulkCocktails[27].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[27].id,
+        ingredientId: bulkIngredients[49].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Sea Breeze
+      {
+        cocktailId: bulkCocktails[28].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[28].id,
+        ingredientId: bulkIngredients[51].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[28].id,
+        ingredientId: bulkIngredients[50].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Sex on the Beach
+      {
+        cocktailId: bulkCocktails[29].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[29].id,
+        ingredientId: bulkIngredients[50].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[29].id,
+        ingredientId: bulkIngredients[51].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[29].id,
+        ingredientId: bulkIngredients[39].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Vodka and Tonic
+      {
+        cocktailId: bulkCocktails[30].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[30].id,
+        ingredientId: bulkIngredients[48].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // White Russian
+      {
+        cocktailId: bulkCocktails[31].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[31].id,
+        ingredientId: bulkIngredients[13].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[31].id,
+        ingredientId: bulkIngredients[68].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Alabama Slammer
+      {
+        cocktailId: bulkCocktails[32].id,
+        ingredientId: bulkIngredients[2].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[32].id,
+        ingredientId: bulkIngredients[15].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[32].id,
+        ingredientId: bulkIngredients[49].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Blizzard
+      {
+        cocktailId: bulkCocktails[33].id,
+        ingredientId: bulkIngredients[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[33].id,
+        ingredientId: bulkIngredients[50].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[33].id,
+        ingredientId: bulkIngredients[65].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Brock's Cocktail
+      {
+        cocktailId: bulkCocktails[34].id,
+        ingredientId: bulkIngredients[2].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[34].id,
+        ingredientId: bulkIngredients[10].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[34].id,
+        ingredientId: bulkIngredients[64].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Godfather
+      {
+        cocktailId: bulkCocktails[35].id,
+        ingredientId: bulkIngredients[3].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[35].id,
+        ingredientId: bulkIngredients[15].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Manhattan
+      {
+        cocktailId: bulkCocktails[36].id,
+        ingredientId: bulkIngredients[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[36].id,
+        ingredientId: bulkIngredients[9].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[36].id,
+        ingredientId: bulkIngredients[64].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Mint Julep
+      {
+        cocktailId: bulkCocktails[37].id,
+        ingredientId: bulkIngredients[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Old fashioned
+      {
+        cocktailId: bulkCocktails[38].id,
+        ingredientId: bulkIngredients[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[38].id,
+        ingredientId: bulkIngredients[42].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[38].id,
+        ingredientId: bulkIngredients[64].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Rob Roy
+      {
+        cocktailId: bulkCocktails[39].id,
+        ingredientId: bulkIngredients[3].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Rusty Nail
+      {
+        cocktailId: bulkCocktails[40].id,
+        ingredientId: bulkIngredients[3].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // 7 and 7
+      {
+        cocktailId: bulkCocktails[41].id,
+        ingredientId: bulkIngredients[2].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[41].id,
+        ingredientId: bulkIngredients[44].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Whiskey Sour
+      {
+        cocktailId: bulkCocktails[42].id,
+        ingredientId: bulkIngredients[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[42].id,
+        ingredientId: bulkIngredients[65].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Campari and Soda
+      {
+        cocktailId: bulkCocktails[43].id,
+        ingredientId: bulkIngredients[22].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[43].id,
+        ingredientId: bulkIngredients[42].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Blackjack
+      {
+        cocktailId: bulkCocktails[44].id,
+        ingredientId: bulkIngredients[1].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Stinger
+      {
+        cocktailId: bulkCocktails[45].id,
+        ingredientId: bulkIngredients[1].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Banshee
+      {
+        cocktailId: bulkCocktails[46].id,
+        ingredientId: bulkIngredients[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[46].id,
+        ingredientId: bulkIngredients[11].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[46].id,
+        ingredientId: bulkIngredients[30].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[46].id,
+        ingredientId: bulkIngredients[68].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Hurricane
+      {
+        cocktailId: bulkCocktails[47].id,
+        ingredientId: bulkIngredients[6].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[47].id,
+        ingredientId: bulkIngredients[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[47].id,
+        ingredientId: bulkIngredients[60].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[47].id,
+        ingredientId: bulkIngredients[49].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[47].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[47].id,
+        ingredientId: bulkIngredients[57].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[47].id,
+        ingredientId: bulkIngredients[64].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Mojito
+      {
+        cocktailId: bulkCocktails[48].id,
+        ingredientId: bulkIngredients[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[48].id,
+        ingredientId: bulkIngredients[42].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[48].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Surfer on Acid
+      {
+        cocktailId: bulkCocktails[49].id,
+        ingredientId: bulkIngredients[35].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[49].id,
+        ingredientId: bulkIngredients[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[49].id,
+        ingredientId: bulkIngredients[6].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[49].id,
+        ingredientId: bulkIngredients[57].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Fireball and Dr. Pepper
+      {
+        cocktailId: bulkCocktails[50].id,
+        ingredientId: bulkIngredients[2].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[50].id,
+        ingredientId: bulkIngredients[46].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Kamikaze
+      {
+        cocktailId: bulkCocktails[51].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[51].id,
+        ingredientId: bulkIngredients[10].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[51].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Melon Ball
+      {
+        cocktailId: bulkCocktails[52].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[52].id,
+        ingredientId: bulkIngredients[37].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[52].id,
+        ingredientId: bulkIngredients[49].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Salty Dog
+      {
+        cocktailId: bulkCocktails[53].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[53].id,
+        ingredientId: bulkIngredients[51].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Vesper 
+      {
+        cocktailId: bulkCocktails[54].id,
+        ingredientId: bulkIngredients[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[54].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[54].id,
+        ingredientId: bulkIngredients[25].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Brass Monkey
+      {
+        cocktailId: bulkCocktails[55].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[55].id,
+        ingredientId: bulkIngredients[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[55].id,
+        ingredientId: bulkIngredients[49].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[55].id,
+        ingredientId: bulkIngredients[32].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Love Potion
+      {
+        cocktailId: bulkCocktails[56].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[56].id,
+        ingredientId: bulkIngredients[50].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[56].id,
+        ingredientId: bulkIngredients[16].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Mudslide
+      {
+        cocktailId: bulkCocktails[57].id,
+        ingredientId: bulkIngredients[8].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[57].id,
+        ingredientId: bulkIngredients[13].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[57].id,
+        ingredientId: bulkIngredients[34].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[57].id,
+        ingredientId: bulkIngredients[68].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[57].id,
+        ingredientId: bulkIngredients[53].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Tom Collins 
+      {
+        cocktailId: bulkCocktails[58].id,
+        ingredientId: bulkIngredients[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[58].id,
+        ingredientId: bulkIngredients[42].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[58].id,
+        ingredientId: bulkIngredients[65].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Singapore Sling
+      {
+        cocktailId: bulkCocktails[59].id,
+        ingredientId: bulkIngredients[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[59].id,
+        ingredientId: bulkIngredients[27].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[59].id,
+        ingredientId: bulkIngredients[1].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[59].id,
+        ingredientId: bulkIngredients[10].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[59].id,
+        ingredientId: bulkIngredients[49].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[59].id,
+        ingredientId: bulkIngredients[66].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        cocktailId: bulkCocktails[59].id,
+        ingredientId: bulkIngredients[42].id,
         createdAt: new Date(),
         updatedAt: new Date()
       },

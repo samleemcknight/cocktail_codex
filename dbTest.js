@@ -1,53 +1,8 @@
 const db = require('./models')
 const { Op } = require("sequelize");
 
-db.ingredient.findOne({
-    where: {
-        name: 'bourbon'
-    }
-}).then(ingredient => {
-    db.cocktail.findAll({
-        where: {
-            primaryAlcohol: 'bourbon'
-        }
-    }).then(cocktails => {
-        ingredient.setCocktails(cocktails).then(relationInfo => {
-            console.log(`${ingredient.name} relation added to cocktails`)
-        })
-    })
-})
-
-db.ingredient.findOne({
-    where: {
-        name: 'brandy'
-    }
-}).then(ingredient => {
-    db.cocktail.findAll({
-        where: {
-            primaryAlcohol: 'brandy'
-        }
-    }).then(cocktails => {
-        ingredient.setCocktails(cocktails).then(relationInfo => {
-            console.log(`${ingredient.name} relation added to cocktails`)
-        })
-    })
-})
-
-db.ingredient.findOne({
-    where: {
-        name: 'vodka'
-    }
-}).then(ingredient => {
-    db.cocktail.findAll({
-        where: {
-            primaryAlcohol: 'vodka'
-        }
-    }).then(cocktails => {
-        ingredient.setCocktails(cocktails).then(relationInfo => {
-            console.log(`${ingredient.name} relation added to cocktails`)
-        })
-    })
-})
+// Method for setting multiple associations between a single ingredient
+// and multiple cocktails
 
 db.ingredient.findOne({
     where: {
@@ -65,39 +20,9 @@ db.ingredient.findOne({
     })
 })
 
-db.ingredient.findOne({
-    where: {
-        name: 'light rum'
-    }
-}).then(ingredient => {
-    db.cocktail.findAll({
-        where: {
-            primaryAlcohol: 'rum'
-        }
-    }).then(cocktails => {
-        ingredient.setCocktails(cocktails).then(relationInfo => {
-            console.log(`${ingredient.name} relation added to cocktails`)
-        })
-    })
-})
 
-db.ingredient.findOne({
-    where: {
-        name: 'light rum'
-    }
-}).then(ingredient => {
-    db.cocktail.findAll({
-       where: {
-           recipe: {
-               [Op.substring]: 'light rum'
-           }
-       }
-    }).then(cocktails => {
-        ingredient.setCocktails(cocktails).then(relationInfo => {
-            console.log(`${ingredient.name} relation added to cocktails`)
-        })
-    })
-})
+// This is a method to associate all cocktails with 'dark rum' in their recipe
+// with the dark rum ingredient. Same can be done with any other substrings
 
 db.ingredient.findOne({
     where: {
@@ -116,6 +41,8 @@ db.ingredient.findOne({
         })
     })
 })
+
+// this is a method to associate multiple ingredients with a single cocktail
 
 db.cocktail.findOne({
     where: {
@@ -136,4 +63,18 @@ db.cocktail.findOne({
             console.log(`${cocktail.name} has ${ingredients.length} ingredients`)
         })
     })
+})
+
+// Method for pulling all cocktails from the database associated with a single ingredient
+
+db.ingredient.findOne({
+    where: {
+        name: 'tequila'
+    },
+    include: [db.cocktail]
+}).then(ingredient => {
+    console.log("-----------------------------")
+    console.log(`Here are the cocktails that use ${ingredient.name}:`)
+    ingredient.cocktails.forEach(el => console.log(el.name))
+    console.log("-----------------------------")
 })
