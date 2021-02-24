@@ -7,3 +7,11 @@ nav ul li {
 h1 {
   color: chartreuse;
 }
+
+#cocktailsHome {
+  max-width: 50%;
+}
+
+#userAvatar {
+  max-width: 100px;
+}
