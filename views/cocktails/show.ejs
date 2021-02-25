@@ -1,4 +1,29 @@
-<!-- VIEW OF ONE FAVORITE DRINK -->
+<div class=oneFavorite> 
+    <!-- LEAVE DIV CLASS ABOVE SAME FOR BOOTSTRAP/STYLING ONLY -->
+    <table>
+        <thead>
+            <tr>
+                <th>Cocktail Name</th>
+                <th>Primary Alcohol</th>
+                <th>Recipe</th>
+            </tr>
+        </thead>
+    <% if (cocktail) { %>
+        <form method="POST" action="/cocktails/myFavorites">
+            <tr>
+                <td><%= cocktail.name%></td>
+                <td><%= cocktail.primaryAlcohol%></td>
+                <td><%= cocktail.recipe%></td>
+            </tr>
+    <% } %>
+    </table>
+</div>
+            <div class="editFavorites">
+                <button type="submit">Edit</button>
+            </div>
+        </form>
+</div>
 
-
-
+<!-- BELOW TABLE -->
+<!-- BUTTON LEFT - EDIT SELECTED RECIPE -->
+<!-- unsure about post/put for form -->
