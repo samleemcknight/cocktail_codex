@@ -19,8 +19,6 @@ router.get('/', isLoggedIn, (req, res) => {
         },
         include: [db.cocktail]
     }).then(user => {
-        console.log('user cocktails: ', user.cocktails)
-        console.log('----------------------')
             res.render('cocktails/search', {cocktails: cocktails, userCocktails: user.cocktails})
     })
 });
@@ -56,12 +54,12 @@ router.post('/myFavorites', (req, res) => {
     db.user.findOne({
         where: { email: req.user.dataValues.email}
     }).then(user => {
-        db.cocktail.findOne({
-            where: { name: req.body.name}
+        db.cocktail.findAll({
+            where: { name: req.body.name }
         }).then(cocktail => {
             // additionally, in the return searched cocktails, take out the cocktail that was added
             // or somehow render the cocktails in such a way that the added cocktail doesn't appear again
-            user.addCocktail(cocktail).then(relationInfo => {
+            user.addCocktails(cocktail).then(relationInfo => {
                 req.flash('success', 'successfully added')
                 res.redirect('/cocktails')
             })
