@@ -20,7 +20,9 @@ router.post('/search', (req, res) => {
     db.cocktail.findAll({
         where: {
             [Op.or]: [
-                { name: req.body.searchTerm },
+                { name: 
+                    {[Op.substring]: req.body.searchTerm}
+                 },
                 { primaryAlcohol: req.body.searchTerm },
             ]
         }
@@ -40,7 +42,6 @@ router.post('/myFavorites', (req, res) => {
         db.cocktail.findOne({
             where: { name: req.body.name}
         }).then(cocktail => {
-            // need to add flash message showing that cocktails were added to db
             // additionally, in the return searched cocktails, take out the cocktail that was added
             // or somehow render the cocktails in such a way that the added cocktail doesn't appear again
             user.addCocktail(cocktail).then(relationInfo => {

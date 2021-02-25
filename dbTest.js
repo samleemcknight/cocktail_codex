@@ -21,8 +21,8 @@ db.ingredient.findOne({
 })
 
 
-// This is a method to associate all cocktails with 'dark rum' in their recipe
-// with the dark rum ingredient. Same can be done with any other substrings
+// // This is a method to associate all cocktails with 'dark rum' in their recipe
+// // with the dark rum ingredient. Same can be done with any other substrings
 
 db.ingredient.findOne({
     where: {
@@ -77,4 +77,15 @@ db.ingredient.findOne({
     console.log(`Here are the cocktails that use ${ingredient.name}:`)
     ingredient.cocktails.forEach(el => console.log(el.name))
     console.log("-----------------------------")
+})
+
+db.cocktail.findAll({
+    where: {
+        [Op.or]: [
+            { name: {[Op.substring]: 'Morgan'} },
+            { primaryAlcohol: 'whiskey' },
+        ],
+    }
+}).then(cocktail => {
+    console.log(cocktail)
 })
