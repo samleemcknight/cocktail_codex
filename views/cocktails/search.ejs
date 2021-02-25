@@ -1,36 +1,29 @@
-<!-- MOST IMPORTANT VIEW AFTER LOGIN, SEARCH WITH FORM FIELD WAITING FOR USER INPUTS  -->
-<!-- HTML -->
-<!-- NAV BAR HOME/SEARCH/Favorites IN THE PRIME LAYOUT SO WILL AUTO-RENDER-->
 
-<!-- H1 Cocktail Search --> 
 <div class="container">
-    <div="searchInfo">
+    <div= class="text-center searchInfo">
     <h1>COCKTAIL SEARCH</h1>
     <!-- p tag with 1 line copy influecing the formatting of the user input -->
     <p>When you see a drink you like, you can add it to your favorites by clicking the button below.</p>
     </div>
     
     <!-- Form Fill -->
-    <div class="searchForm">
+    <div class="col-md-12 d-flex justify-content-center searchForm">
         <form action="/cocktails/search" method="POST">
             <div class="searchField">
-                <label for ="searchTerm">Pick Your Poison.</label>
+                <label for ="searchTerm">Pick Your Poison</label>
                 <input type="text" class="formField" id="formField" name="searchTerm" value="" placeholder="Cocktail or Alcohol Name" required>
             </div>
-        <!-- 2 In-Line Buttons -
-        Button Left - Submit
-        Button Right - Clear -->
             <div class="ButtonRow">
-                <button class="btn" type="submit">Submit Search</button>
-                <button type="submit">Clear</button>
+                <button class="btn btn-primary" type="submit">Submit Search</button>
+                <button class="btn btn-secondary" type="submit">Clear</button>
             </div>
         </form>
     </div>
     
     
     <!-- Returned Search Results -->
-<div class=searchResults>
-    <table>
+<div class="searchResults col-md-12 d-flex justify-content-center">
+    <table class="table">
         <thead>
             <tr>
                 <th>Cocktail Name</th>
@@ -40,19 +33,32 @@
             </tr>
         </thead>
     <% if (cocktails) {%>
-    <% cocktails.forEach(function(cocktail) { %>
+    <% cocktails.forEach(cocktail => {%>
         <form method="POST" action="/cocktails/myFavorites">
             <tr>
                 <td><%= cocktail.name%></td>
                 <td><%= cocktail.primaryAlcohol%></td>
                 <td><%= cocktail.recipe%></td>
+
+                <% for (let i=0; i<userCocktails.length; i++) {%>
+                    <% if (userCocktails[i].id !== cocktail.id) {%>  
                 <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
+                        <% break %> 
+                    <% } %> 
+                <% } %>
+
+                <% for (let j=0; j<userCocktails.length; j++) {%>
+                    <% if (userCocktails[j].id === cocktail.id) {%> 
+                <td><button class="btn btn-primary">Favorited</button></td>
+                    <% break %> 
+                    <% } %> 
+                <% } %> 
             </tr>
     <%})%> 
     <% } %>
     </table>
 </div>
-            <div class="addFavorites">
+            <div class="addFavorites col-md-12 d-flex justify-content-center">
                 <button type="submit">Add to Favorites</button>
             </div>
         </form>
@@ -61,7 +67,6 @@
 <!-- Can't recall if you have to div every element in a table in bootstrap, reference later -->
 
 <!-- SELECT ROW BUTTON <td><input type="radio" value="submit" onclick= "FUNCTION TO SHOW THATS BEEN SELECTED"-->
-
 
 <!-- Button that appears after results search "Add to Favorites" -->
 
