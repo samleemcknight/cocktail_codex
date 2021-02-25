@@ -5,8 +5,36 @@
 <!-- THs are Cocktail Name, Primary Alcohol, Recipe, Select -->
 <!-- For Each Loop? EJS, pretty sure -->
 <!-- SELECT COLUMN IS RADIO BUTTONS, have to look that up as part of Table HTML versus form, maybe similar -->
-
-
+<div class=searchResults> 
+    <!-- LEAVE DIV CLASS ABOVE SAME FOR BOOTSTRAP/STYLING ONLY -->
+    <table>
+        <thead>
+            <tr>
+                <th>Cocktail Name</th>
+                <th>Primary Alcohol</th>
+                <th>Recipe</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+    <% if (cocktails) {%>
+    <% cocktails.forEach(function(cocktail) { %>
+        <form method="POST" action="/cocktails/myFavorites">
+            <tr>
+                <td><%= cocktail.name%></td>
+                <td><%= cocktail.primaryAlcohol%></td>
+                <td><%= cocktail.recipe%></td>
+                <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
+            </tr>
+    <%})%> 
+    <% } %>
+    </table>
+</div>
+            <div class="removeFavorites">
+                <button type="submit">Remove Favorite</button>
+            </div>
+        </form>
+</div>
+<!-- method override to change form from post to delete, leave form as post for now -->
 
 
 
