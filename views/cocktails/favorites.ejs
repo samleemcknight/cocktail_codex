@@ -13,7 +13,7 @@
     <% cocktails.forEach(function(cocktail) { %>
         <form method="POST" action="/cocktails/myCocktails?_method=DELETE">
             <tr>
-                <th scope="row"><%= cocktail.name%></td>
+                <th scope="row"><a href="/cocktails/myCocktails/<%= cocktail.id %>"><%= cocktail.name%></a></th></td>
                 <td><%= cocktail.primaryAlcohol%></td>
                 <td><%= cocktail.recipe%></td>
                 <td><td><input type="checkbox" name="id" value="<%= cocktail.id %>"></td></td>
