@@ -1,14 +1,7 @@
-<!-- VIEW OF USER'S LIST TABLE OF FAVORITE'D DRINKS -->
-<!-- NAV BAR -->
-<!-- H2 MY FAVORITE DRINKS/MY RECIPES -->
-<!-- TABLE -->
-<!-- THs are Cocktail Name, Primary Alcohol, Recipe, Select -->
-<!-- For Each Loop? EJS, pretty sure -->
-<!-- SELECT COLUMN IS RADIO BUTTONS, have to look that up as part of Table HTML versus form, maybe similar -->
-<div class=searchResults> 
+<div class="container searchResults"> 
     <!-- LEAVE DIV CLASS ABOVE SAME FOR BOOTSTRAP/STYLING ONLY -->
-    <table>
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
                 <th>Cocktail Name</th>
                 <th>Primary Alcohol</th>
@@ -18,23 +11,22 @@
         </thead>
     <% if (cocktails) {%>
     <% cocktails.forEach(function(cocktail) { %>
-        <form method="POST" action="/cocktails/myFavorites">
+        <form method="POST" action="/cocktails/myCocktails?_method=DELETE">
             <tr>
-                <td><%= cocktail.name%></td>
+                <th scope="row"><%= cocktail.name%></td>
                 <td><%= cocktail.primaryAlcohol%></td>
                 <td><%= cocktail.recipe%></td>
-                <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
+                <td><td><input type="checkbox" name="id" value="<%= cocktail.id %>"></td></td>
             </tr>
     <%})%> 
     <% } %>
     </table>
-</div>
-            <div class="removeFavorites">
-                <button type="submit">Remove Favorite</button>
+            <div>
+                <button type="submit" class="btn btn-sm btn-outline-danger">Remove From Favorites</button>
             </div>
         </form>
 </div>
-<!-- method override to change form from post to delete, leave form as post for now -->
+
 
 
 
