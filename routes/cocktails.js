@@ -5,6 +5,11 @@ const db = require("../models")
 const isLoggedIn = require('../middleware/isLoggedIn')
 const { Op } = require('sequelize')
 
+
+
+
+
+
 // ROUTERS COCKTAILS
 
 // GET ROUTE FOR SEARCH PAGE
@@ -98,9 +103,37 @@ router.delete('/myCocktails/:id', (req, res) => {
     res.redirect('/myCocktails');
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // GET Route- Sam's edit recipe ideas functionality, SHOWS ONE to edit from favorites get route
 router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
-    res.render('myOneCocktail');
+    db.usersCocktails.findOne({
+        where: {
+            cocktailId: req.params.id,
+            userId: req.user.dataValues.id
+        }
+    })
+    .then(data => {
+        db.cocktail.findOne({
+            where: {
+                id: data.cocktailId
+            }
+        }).then(cocktail => {
+            console.log(cocktail)
+            res.render('cocktails/show', {cocktail: cocktail});
+        })
+    })
 });
 
 // PUT ROUTE- Sam's edit recipe idea, EDITS ONE that was shown
