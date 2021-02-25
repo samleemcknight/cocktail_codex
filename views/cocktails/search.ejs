@@ -40,7 +40,7 @@
                 <td><%= cocktail.primaryAlcohol%></td>
                 <td><%= cocktail.recipe%></td>
             <% let i = null %>  
-            <% if (userCocktails !== []) {%> 
+            <% if (typeof userCocktails[0] !== "undefined") {%> 
             <% for (let j=0; j<userCocktails.length; j++) {%>
                 <% i = j %> 
                 <% if (userCocktails[j].name === cocktail.name) {%> 
