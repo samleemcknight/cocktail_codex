@@ -52,10 +52,10 @@ router.post('/myFavorites', (req, res) => {
     })
 })
 
-// GET ROUTE - list info about specific drink with add to myCocktails functionality 
-router.get('/:id', isLoggedIn, (req, res) => {
-    res.render('show');
-});
+// // GET ROUTE - list info about specific drink with add to myCocktails functionality 
+// router.get('/:id', isLoggedIn, (req, res) => {
+//     res.render('show');
+// });
 
 // POST ROUTE - when user adds to my favorites from 1Cocktail Get Page
 // router.post('/:id', isLoggedIn, (req, res) => {
@@ -64,7 +64,16 @@ router.get('/:id', isLoggedIn, (req, res) => {
 
 // GET ROUTE - users favorites
 router.get('/myCocktails', isLoggedIn, (req, res) => {
-    res.render('favorites');
+    console.log(req.user)
+    db.user.findOne({
+        where: {
+            email: req.user.dataValues.email
+        },
+        include: [db.cocktail]
+    }).then(user => {
+        console.log(user.cocktails)
+        res.render('cocktails/favorites', {cocktails: user.cocktails})
+    })
 });
 
 // DELETE Route - Deletes one cocktail from users favorites, delete from individual page or main listing of favorites?
