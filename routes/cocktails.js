@@ -99,8 +99,17 @@ router.get('/myCocktails', isLoggedIn, (req, res) => {
 });
 
 // DELETE Route - Deletes one cocktail from users favorites, delete from individual page or main listing of favorites?
-router.delete('/myCocktails/:id', (req, res) => {
-    res.redirect('/myCocktails');
+router.delete('/myCocktails', (req, res) => {
+    db.user.findOne({
+        where: {
+            email: req.user.dataValues.email
+        },
+        include: [db.cocktail]
+    }).then(user => {
+        user.removeCocktails(req.body.id).then(relationInfo => {
+            res.redirect('/cocktails/myCocktails')
+        })
+    })
 });
 
 
