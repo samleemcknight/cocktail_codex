@@ -9,15 +9,19 @@ const { Op } = require('sequelize')
 
 // GET ROUTE FOR SEARCH PAGE
 let searchedCocktails = null
+
 router.get('/', isLoggedIn, (req, res) => {
     let cocktails = searchedCocktails
+    
     db.user.findOne({
         where: {
             email: req.user.dataValues.email
         },
         include: [db.cocktail]
     }).then(user => {
-        res.render('cocktails/search', {cocktails: cocktails, userCocktails: user.cocktails})
+        console.log('user cocktails: ', user.cocktails)
+        console.log('----------------------')
+            res.render('cocktails/search', {cocktails: cocktails, userCocktails: user.cocktails})
     })
 });
 
@@ -77,14 +81,14 @@ router.post('/myFavorites', (req, res) => {
 
 // GET ROUTE - users favorites
 router.get('/myCocktails', isLoggedIn, (req, res) => {
-    console.log(req.user)
+    
     db.user.findOne({
         where: {
             email: req.user.dataValues.email
         },
         include: [db.cocktail]
     }).then(user => {
-        console.log(user.cocktails)
+        
         res.render('cocktails/favorites', {cocktails: user.cocktails})
     })
 });

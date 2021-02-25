@@ -40,6 +40,7 @@
                 <td><%= cocktail.primaryAlcohol%></td>
                 <td><%= cocktail.recipe%></td>
             <% let i = null %>  
+            <% if (userCocktails !== []) {%> 
             <% for (let j=0; j<userCocktails.length; j++) {%>
                 <% i = j %> 
                 <% if (userCocktails[j].name === cocktail.name) {%> 
@@ -48,6 +49,9 @@
                 <% } %> 
                 <% } %>  
             <% if (userCocktails[i].name !== cocktail.name) {%>
+                <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
+            <% } %>
+            <% } else {%>
                 <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
             <% } %> 
             </tr>
