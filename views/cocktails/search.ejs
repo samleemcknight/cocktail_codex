@@ -3,56 +3,60 @@
 <!-- NAV BAR HOME/SEARCH/Favorites IN THE PRIME LAYOUT SO WILL AUTO-RENDER-->
 
 <!-- H1 Cocktail Search --> 
-<div="searchInfo">
-<h1>COCKTAIL SEARCH</h1>
-<!-- p tag with 1 line copy influecing the formatting of the user input -->
-<p>When you see a drink you like, you can add it to your favorites by clicking the button below.</p>
-</div>
-
-<!-- Form Fill -->
-<div class="searchForm">
-<form action="/" method="GET">
-<div class="searchField">
-<label for ="formField">Pick Your Poison.</label>
-<input type="text" class="formField" id="formField" name="formField" value="Cocktail Name" required>
-</div>
-<!-- 2 In-Line Buttons -
-Button Left - Submit
-Button Right - Clear -->
-<div class="ButtonRow">
-    <button type="button">Submit Search</button>
-    <button type="button">Clear </button>
+<div class="container">
+    <div="searchInfo">
+    <h1>COCKTAIL SEARCH</h1>
+    <!-- p tag with 1 line copy influecing the formatting of the user input -->
+    <p>When you see a drink you like, you can add it to your favorites by clicking the button below.</p>
     </div>
-</form>
-</div>
-
-
-<!-- Returned Search Results -->
+    
+    <!-- Form Fill -->
+    <div class="searchForm">
+        <form action="/cocktails/search" method="POST">
+            <div class="searchField">
+                <label for ="searchTerm">Pick Your Poison.</label>
+                <input type="text" class="formField" id="formField" name="searchTerm" value="" placeholder="Cocktail or Alcohol Name" required>
+            </div>
+        <!-- 2 In-Line Buttons -
+        Button Left - Submit
+        Button Right - Clear -->
+            <div class="ButtonRow">
+                <button class="btn" type="submit">Submit Search</button>
+                <button type="submit">Clear</button>
+            </div>
+        </form>
+    </div>
+    
+    
+    <!-- Returned Search Results -->
 <div class=searchResults>
-<table>
-<thead>
-<tr>
-    <th>Cocktail Name</th>
-    <th>Primary Alcohol</th>
-    <th>Recipe</th>
-    <th>Select</th>
-</tr>
-</thead>
-<% cocktails.forEach(function(cocktail) { %>
-    <form method="POST" action="/myFavorites">
-    <tr>
-    <td><%= cocktail.name%></td>
-    <td><%= cocktail.primaryAlcohol%></td>
-    <td><%= cocktail.recipe%></td>
-    <td><input type="radio" value="selectedDrink"></td>
-    </tr>
+    <table>
+        <thead>
+            <tr>
+                <th>Cocktail Name</th>
+                <th>Primary Alcohol</th>
+                <th>Recipe</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+    <% if (cocktails) {%>
+    <% cocktails.forEach(function(cocktail) { %>
+        <form method="POST" action="/cocktails/myFavorites">
+            <tr>
+                <td><%= cocktail.name%></td>
+                <td><%= cocktail.primaryAlcohol%></td>
+                <td><%= cocktail.recipe%></td>
+                <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
+            </tr>
     <%})%> 
-    </form>
-</table>
+    <% } %>
+    </table>
 </div>
-<div class="addFavorites">
-    <button type="button">Add to Favorites</button>
-    </div>
+            <div class="addFavorites">
+                <button type="submit">Add to Favorites</button>
+            </div>
+        </form>
+</div>
 
 <!-- Can't recall if you have to div every element in a table in bootstrap, reference later -->
 
