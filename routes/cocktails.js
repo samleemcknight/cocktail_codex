@@ -8,27 +8,41 @@ const { Op } = require('sequelize')
 // ROUTERS COCKTAILS
 
 // GET ROUTE FOR SEARCH PAGE
-
+let searchedCocktails = null
 router.get('/', isLoggedIn, (req, res) => {
-    let cocktails = null
-    res.render('cocktails/search', {cocktails: cocktails})
+    let cocktails = searchedCocktails
+    db.user.findOne({
+        where: {
+            email: req.user.dataValues.email
+        },
+        include: [db.cocktail]
+    }).then(user => {
+        res.render('cocktails/search', {cocktails: cocktails, userCocktails: user.cocktails})
+    })
 });
 
-let searchedCocktails = null
+
 // POST route for search function
 router.post('/search', (req, res) => {
-    db.cocktail.findAll({
+
+    db.user.findOne({
         where: {
-            [Op.or]: [
-                { name: 
-                    {[Op.substring]: req.body.searchTerm}
-                 },
-                { primaryAlcohol: req.body.searchTerm },
-            ]
-        }
-    }).then(cocktails => {
-        searchedCocktails = cocktails
-        res.render('cocktails/search', { cocktails: cocktails })
+            email: req.user.dataValues.email
+        },
+        include: [db.cocktail]
+    }).then(user => {
+        db.cocktail.findAll({
+            where: {
+                [Op.or]: [
+                    { name: { [Op.substring]: req.body.searchTerm } },
+                    { primaryAlcohol: { [Op.substring]: req.body.searchTerm } },
+                ]
+            }
+        }).then(cocktails => {
+            searchedCocktails = cocktails
+            
+            res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
+        })
     })
 })
 
@@ -38,7 +52,6 @@ router.post('/myFavorites', (req, res) => {
     db.user.findOne({
         where: { email: req.user.dataValues.email}
     }).then(user => {
-        
         db.cocktail.findOne({
             where: { name: req.body.name}
         }).then(cocktail => {
