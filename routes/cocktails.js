@@ -122,7 +122,6 @@ router.post('/create', isLoggedIn, (req, res) => {
     })
 })
 
-// GET Route- edit cocktail recipes view
 router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
     db.usersCocktails.findOne({
         where: {
@@ -138,6 +137,27 @@ router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
         }).then(cocktail => {
             console.log(cocktail)
             res.render('cocktails/show', {cocktail: cocktail});
+        })
+    })
+})
+
+
+// GET Route- edit cocktail recipes view
+router.get('/myCocktails/edit/:id', isLoggedIn, (req, res) => {
+    db.usersCocktails.findOne({
+        where: {
+            cocktailId: req.params.id,
+            userId: req.user.dataValues.id
+        }
+    })
+    .then(data => {
+        db.cocktail.findOne({
+            where: {
+                id: data.cocktailId
+            }
+        }).then(cocktail => {
+            console.log(cocktail)
+            res.render('cocktails/edit', {cocktail: cocktail});
         })
     })
 });
