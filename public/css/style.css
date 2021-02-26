@@ -4,8 +4,13 @@ nav ul li {
   margin-right: .3em;
 }
 
+body {
+  font-family: ‘Raleway’, sans-serif;
+}
+
 h1 {
   color: darkred;
+  font-family: ‘Slackey’, cursive;
 }
 
 #clear {
@@ -27,3 +32,5 @@ h1 {
 .cocktail-img {
   max-width: 150px;
 }
+
+
