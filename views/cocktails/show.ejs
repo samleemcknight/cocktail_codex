@@ -1,0 +1,28 @@
+<div class="container"> 
+    <!-- LEAVE DIV CLASS ABOVE SAME FOR BOOTSTRAP/STYLING ONLY -->
+    <h1 class="text-center"><%= cocktail.name %> </h1>
+    <div class="d-flex justify-content-center d-flex justify-content-center">
+        <div class="col-md-5 text-center">
+            <% if (cocktail.url) {%>
+                <img src="<%= cocktail.url %>" alt="<%= cocktail.name %>" class="img-fluid cocktail-img img-thumbnail">
+            <% }%>
+        <form action="/cocktails/myFavorites/<%= cocktail.id %>?_method=PUT" method="POST">
+            <div class="form-group">
+                <label for="name">Cocktail Name:</label>
+                <input class="form-control" type="text" name="name" value="<%= cocktail.name %>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="primaryAlcohol">Primary Alcohol:</label>
+                <input class="form-control" type="text" name="primaryAlcohol" value="<%= cocktail.primaryAlcohol %>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="recipe">Recipe:</label>
+                <textarea class="form-control" type="textarea" placeholder="<%= cocktail.recipe %>" name="recipe" readonly></textarea>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a href="/cocktails/myCocktails/edit/<%= cocktail.id %>">Edit</a>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

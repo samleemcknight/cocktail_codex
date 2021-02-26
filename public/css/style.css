@@ -5,5 +5,21 @@ nav ul li {
 }
 
 h1 {
-  color: chartreuse;
+  color: darkred;
+}
+
+#cocktailsHome {
+  max-width: 50%;
+}
+
+#userAvatar {
+  max-width: 100px;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.cocktail-img {
+  max-width: 150px;
 }

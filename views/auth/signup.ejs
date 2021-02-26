@@ -1,12 +1,33 @@
-<form action="/auth/signup" method="POST">
-  <label for="new-email">Email</label>
-  <input id="new-email" type="email" name="email">
+<div class="container">
+  <div class="col-md-12">
+    <h1 class="text-center">Personal Cocktail Codex Builder</h1>
+  </div>
+  <!-- made a quick style change just to ensure the avatar remains small -->
+  <!-- image.png is the signup iconography -->
+  <div class="col-sm-12 d-flex justify-content-center">
+    <img src="/assets/image.png" alt="" class="img-thumbnail" id="userAvatar">
+  </div>
+  <div class="col-lg-12 d-flex justify-content-center">
+    <form action="/auth/signup" method="POST">
+      <div class="col-md-12 justify-content-center">
+        <p class="text-center">Name</p>
+        <input id="new-name" type="text" name="name" placeholder="Name" class="text-center">
+      </div>
+    
+      <div class="col-md-12 justify-content-center">
+        <p class="text-center">Email</p>
+        <input id="new-email" type="email" name="email" placeholder="Email" class="text-center">
+      </div>
+    
+      <div class="col-md-12 justify-content-center">
+        <p class="text-center">Password</p>
+        <input id="new-password" type="password" name="password" placeholder="Password" class="text-center">
+      </div>
+    
+      <div class="row justify-content-center">
+        <input type="submit" value="Sign up">
+      </div>
+    </form>
+  </div>
 
-  <label for="new-name">Name</label>
-  <input id="new-name" type="text" name="name">
-
-  <label for="new-password">Password</label>
-  <input id="new-password" type="password" name="password">
-
-  <input type="submit" value="Sign up">
-</form>
+</div>

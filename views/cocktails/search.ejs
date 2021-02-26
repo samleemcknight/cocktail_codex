@@ -1,0 +1,87 @@
+
+<div class="container">
+    <div= class="text-center searchInfo">
+    <h1>COCKTAIL SEARCH</h1>
+    <!-- p tag with 1 line copy influecing the formatting of the user input -->
+    <p>When you see a drink you like, you can add it to your favorites by clicking the button below.</p>
+    </div>
+    
+    <!-- Form Fill -->
+    <div class="col-md-12 d-flex justify-content-center searchForm">
+        <form action="/cocktails/search" method="POST">
+            <div class="searchField">
+                <label for ="searchTerm">Pick Your Poison</label>
+                <input type="text" class="formField" id="formField" name="searchTerm" value="" placeholder="Cocktail or Alcohol Name" required>
+            </div>
+            <div class="ButtonRow">
+                <button class="btn btn-primary" type="submit">Submit Search</button>
+                <button class="btn btn-secondary" type="submit">Clear</button>
+            </div>
+        </form>
+    </div>
+    
+    
+    <!-- Returned Search Results -->
+<div class="searchResults col-md-12 d-flex justify-content-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cocktail Name</th>
+                <th>Primary Alcohol</th>
+                <th>Recipe</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+    <% if (cocktails) {%>
+    <% cocktails.forEach(cocktail => {%>
+        <form method="POST" action="/cocktails/myFavorites">
+            <tr>
+                <td><%= cocktail.name%></td>
+                <td><%= cocktail.primaryAlcohol%></td>
+                <td><%= cocktail.recipe%></td>
+            <% let i = null %>  
+            <% if (typeof userCocktails[0] !== "undefined") {%> 
+            <% for (let j=0; j<userCocktails.length; j++) {%>
+                <% i = j %> 
+                <% if (userCocktails[j].name === cocktail.name) {%> 
+                <td><button class="btn btn-info" disabled>Favorited</button></td>
+                <% break %> 
+                <% } %> 
+                <% } %>  
+            <% if (userCocktails[i].name !== cocktail.name) {%>
+                <td><input type="checkbox" name="name" value="<%= cocktail.name %>"></td>
+            <% } %>
+            <% } else {%>
+                <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
+            <% } %> 
+            </tr>
+    <%})%> 
+    <% } %>
+    </table>
+</div>
+            <div class="addFavorites col-md-12 d-flex justify-content-center">
+                <button type="submit">Add to Favorites</button>
+            </div>
+        </form>
+</div>
+
+<!-- Can't recall if you have to div every element in a table in bootstrap, reference later -->
+
+<!-- SELECT ROW BUTTON <td><input type="radio" value="submit" onclick= "FUNCTION TO SHOW THATS BEEN SELECTED"-->
+
+<!-- Button that appears after results search "Add to Favorites" -->
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
