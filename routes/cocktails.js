@@ -5,8 +5,6 @@ const db = require("../models")
 const isLoggedIn = require('../middleware/isLoggedIn')
 const { Op } = require('sequelize')
 
-// ROUTERS COCKTAILS
-
 // GET ROUTE FOR SEARCH PAGE
 let searchedCocktails = null
 
@@ -40,12 +38,12 @@ router.post('/search', (req, res) => {
                 ]
             }
         }).then(cocktails => {
-            console.log("what have we here?", cocktails)
+            
             if (typeof cocktails[0] === "undefined") {
-                req.flash('success', 'No results found')
+                req.flash('success', 'No matches found')
                 res.redirect('/cocktails')
             } else {
-                    // searchedCocktails = cocktails
+                    
                     res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
             }
         })
@@ -64,7 +62,7 @@ router.post('/myFavorites', (req, res) => {
             // additionally, in the return searched cocktails, take out the cocktail that was added
             // or somehow render the cocktails in such a way that the added cocktail doesn't appear again
             user.addCocktails(cocktail).then(relationInfo => {
-                req.flash('success', 'successfully added')
+                req.flash('success', 'You have a new favorite cocktail.')
                 res.redirect('/cocktails')
             })
         })
@@ -114,7 +112,7 @@ router.post('/create', isLoggedIn, (req, res) => {
     }).then(newCocktail => {
         db.user.findOne({ where: { email: req.user.dataValues.email } }).then(user => {
             user.addCocktail(newCocktail).then(relationInfo => {
-                req.flash('success', 'Success! Your creation is beautiful')
+                req.flash('success', 'Success! Your creation tastes beautiful.')
                 res.redirect('/cocktails/myCocktails')
             })
         })
@@ -135,7 +133,7 @@ router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
                 id: data.cocktailId
             }
         }).then(cocktail => {
-            console.log(cocktail)
+            
             res.render('cocktails/show', {cocktail: cocktail});
         })
     })
@@ -156,7 +154,7 @@ router.get('/myCocktails/edit/:id', isLoggedIn, (req, res) => {
                 id: data.cocktailId
             }
         }).then(cocktail => {
-            console.log(cocktail)
+            
             res.render('cocktails/edit', {cocktail: cocktail});
         })
     })
@@ -164,7 +162,7 @@ router.get('/myCocktails/edit/:id', isLoggedIn, (req, res) => {
 
 
 
-// PUT ROUTE- Sam's edit recipe idea, EDITS ONE that was shown
+// PUT ROUTE- EDITS ONE that was shown
 router.put('/myFavorites/:id', isLoggedIn, (req, res) => {
     db.cocktail.findOne({
         where: {
@@ -190,7 +188,7 @@ router.put('/myFavorites/:id', isLoggedIn, (req, res) => {
             }).then(newCocktail => {
                 db.user.findOne({where: {email: req.user.dataValues.email}}).then(user => {
                     user.addCocktail(newCocktail).then(relationInfo => {
-                        req.flash('success', 'This is pretty different from anything we\'ve seen, so we made it into a new cocktail for you')
+                        req.flash('success', 'This is pretty different from anything we\'ve seen, so we made it into a new cocktail for you.')
                         res.redirect('/cocktails/myCocktails')
                     })
                 })
@@ -199,30 +197,5 @@ router.put('/myFavorites/:id', isLoggedIn, (req, res) => {
     }
     })
 })
-// BONUS
-
-// SEARCH COCKTAILS BY PRIMARY
-// GET ROUTE FOR SEARCH
-router.get('/prime', isLoggedIn, (req, res) => {
-    res.render('searchPrime');
-});
-
-// GET ROUTE FOR ONE DRINK SEARCHED
-router.get('/prime/:id', isLoggedIn, (req, res) => {
-    res.render('prime');
-});
-
-// POST ROUTE - when user adds to my favorites from 1Cocktail primary alcohol Get Page
-router.post('/prime/:id', isLoggedIn, (req, res) => {
-    res.redirect('/myCocktails');
-});
-
-
-
-
-
-
-
-
 
 module.exports = router;

@@ -2,11 +2,8 @@
 <div class="container">
     <div= class="text-center searchInfo">
     <h1>COCKTAIL SEARCH</h1>
-    <!-- p tag with 1 line copy influecing the formatting of the user input -->
     <p>When you see a drink you like, you can add it to your favorites by clicking the button below.</p>
     </div>
-    
-    <!-- Form Fill -->
     <div class="col-md-12 d-flex justify-content-center searchForm">
         <form action="/cocktails/search" method="POST">
             <div class="searchField">
@@ -21,9 +18,6 @@
             </div>
         </form>
     </div>
-    
-    
-    <!-- Returned Search Results -->
 <div class="searchResults col-md-12 d-flex justify-content-center">
     <table class="table">
         <% if (cocktails) {%>
@@ -66,12 +60,6 @@
             </div>
         </form>
 </div>
-
-<!-- Can't recall if you have to div every element in a table in bootstrap, reference later -->
-
-<!-- SELECT ROW BUTTON <td><input type="radio" value="submit" onclick= "FUNCTION TO SHOW THATS BEEN SELECTED"-->
-
-<!-- Button that appears after results search "Add to Favorites" -->
 
 
 

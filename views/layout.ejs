@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cocktail Codex</title>
-    <!-- CSS STYLE, NEED TO SWAP WITH BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
@@ -17,9 +16,7 @@
           <% if (!currentUser) { %>
             <li><a href="/auth/signup">Signup</a></li>
             <li>></li>
-            <!-- Don't know if we need signup at top nav bar, usually below login field if new user -->
             <li><a href="/auth/login">Login</a></li>
-<!-- Since we decided to automatically load the login page, don't need a login link at the top -->
           <!-- LOGGED IN  -->
           <% } else { %>
             <li><a href="/cocktails">Cocktail Search</a></li>
@@ -29,9 +26,6 @@
             <li><a href="/profile">Profile</a></li>
             <li>></li>
             <li><a href="/auth/logout">Logout</a></li>
-<!-- Added Search to Logged in Nav Bar, Moved Order -->
-<!-- Like to style using CRUMBS IN BOOTSTRAP -->
-
           <% } %>
         </ul>
       </nav>
@@ -41,5 +35,3 @@
     <%- body %>
   </body>
 </html>
-
-<!-- PUT BOOTSTRAP ON THIS PAGE -->
