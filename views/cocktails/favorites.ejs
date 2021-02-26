@@ -15,10 +15,10 @@
                 <% if (cocktails) {%>
                 <% cocktails.forEach(function(cocktail) { %>
                 <tr>
-                    <th scope="row"><%= cocktail.name%></th></td>
+                    <th scope="row"><a href="/cocktails/myCocktails/<%= cocktail.id %>"><%= cocktail.name%></a></th></td>
                     <td><%= cocktail.primaryAlcohol%></td>
                     <td><%= cocktail.recipe%></td>
-                    <td><a href="/cocktails/myCocktails/<%= cocktail.id %>">Edit</a></td>
+                    <td><a href="/cocktails/myCocktails/edit/<%= cocktail.id %>">Edit</a></td>
                     <td><td><input type="checkbox" name="id" value="<%= cocktail.id %>"></td></td>
                 </tr>
                 <%})%> 
