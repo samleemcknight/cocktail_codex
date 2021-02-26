@@ -90,21 +90,29 @@ const { Op } = require("sequelize");
 //     console.log(cocktail)
 // })
 
-db.user.findOne({
+// db.user.findOne({
+//     where: {
+//         email: 'user1@user.com'
+//     },
+//     include: [db.cocktail]
+// }).then(user => {
+//     db.cocktail.findAll({
+//         where: {
+//             id: { [Op.ne]: user.cocktails[0].id },
+//             [Op.or]: [
+//                 { name: { [Op.substring]: 'vodka' } },
+//                 { primaryAlcohol: { [Op.substring]: 'vodka'} },
+//             ]
+//         }
+//     }).then(cocktails => {
+//         console.log(cocktails)
+//     })
+// })
+
+db.cocktail.findOne({
     where: {
-        email: 'user1@user.com'
-    },
-    include: [db.cocktail]
-}).then(user => {
-    db.cocktail.findAll({
-        where: {
-            id: { [Op.ne]: user.cocktails[0].id },
-            [Op.or]: [
-                { name: { [Op.substring]: 'vodka' } },
-                { primaryAlcohol: { [Op.substring]: 'vodka'} },
-            ]
-        }
-    }).then(cocktails => {
-        console.log(cocktails)
-    })
+        name: 'Booby Babby'
+    }
+}).then(cocktail => {
+    console.log(cocktail)
 })

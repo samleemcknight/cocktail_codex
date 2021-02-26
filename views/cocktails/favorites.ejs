@@ -6,16 +6,18 @@
                 <th>Cocktail Name</th>
                 <th>Primary Alcohol</th>
                 <th>Recipe</th>
-                <th>Select</th>
+                <th></th>
+                <th colspan="2">Select</th>
             </tr>
         </thead>
     <% if (cocktails) {%>
     <% cocktails.forEach(function(cocktail) { %>
         <form method="POST" action="/cocktails/myCocktails?_method=DELETE">
             <tr>
-                <th scope="row"><a href="/cocktails/myCocktails/<%= cocktail.id %>"><%= cocktail.name%></a></th></td>
+                <th scope="row"><%= cocktail.name%></th></td>
                 <td><%= cocktail.primaryAlcohol%></td>
                 <td><%= cocktail.recipe%></td>
+                <td><a href="/cocktails/myCocktails/<%= cocktail.id %>">Edit</a></td>
                 <td><td><input type="checkbox" name="id" value="<%= cocktail.id %>"></td></td>
             </tr>
     <%})%> 

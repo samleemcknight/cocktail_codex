@@ -5,11 +5,6 @@ const db = require("../models")
 const isLoggedIn = require('../middleware/isLoggedIn')
 const { Op } = require('sequelize')
 
-
-
-
-
-
 // ROUTERS COCKTAILS
 
 // GET ROUTE FOR SEARCH PAGE
@@ -27,7 +22,6 @@ router.get('/', isLoggedIn, (req, res) => {
             res.render('cocktails/search', {cocktails: cocktails, userCocktails: user.cocktails})
     })
 });
-
 
 // POST route for search function
 router.post('/search', (req, res) => {
@@ -110,19 +104,6 @@ router.delete('/myCocktails', (req, res) => {
     })
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // GET Route- Sam's edit recipe ideas functionality, SHOWS ONE to edit from favorites get route
 router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
     db.usersCocktails.findOne({
@@ -144,10 +125,44 @@ router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
 });
 
 // PUT ROUTE- Sam's edit recipe idea, EDITS ONE that was shown
-router.put('/myCocktails/edit/:id', isLoggedIn, (req, res) => {
-    res.redirect('/myCocktails');
-});
-
+router.put('/myFavorites/:id', isLoggedIn, (req, res) => {
+    // console.log(req.body.name)
+    // console.log(req.body.primaryAlcohol)
+    // console.log(req.body.recipe)
+    // res.send("success")
+    db.cocktail.findOne({
+        where: {
+            name: req.body.name
+        }
+    }).then(cocktail => {
+        if (cocktail) {
+            cocktail.update({
+                name: req.body.name,
+                primaryAlcohol: req.body.primaryAlcohol,
+                recipe: req.body.recipe,
+                url: req.body.url,
+            }).then(updateinfo => {
+                req.flash('success', 'Edited!')
+                res.redirect('/cocktails/myCocktails')
+            })
+        } else if (!cocktail) {
+            db.cocktail.create({
+                name: req.body.name,
+                primaryAlcohol: req.body.primaryAlcohol,
+                recipe: req.body.recipe,
+                url: req.body.url,
+            }).then(newCocktail => {
+                db.user.findOne({where: {email: req.user.dataValues.email}}).then(user => {
+                    user.addCocktail(newCocktail).then(relationInfo => {
+                        req.flash('success', 'This is pretty different from anything we\'ve seen, so we made it into a new cocktail for you')
+                        res.redirect('/cocktails/myCocktails')
+                    })
+                })
+                
+        })
+    }
+    })
+})
 // BONUS
 
 // SEARCH COCKTAILS BY PRIMARY
