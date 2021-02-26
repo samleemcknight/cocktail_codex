@@ -40,11 +40,12 @@ router.post('/search', (req, res) => {
                 ]
             }
         }).then(cocktails => {
-            if(!cocktails) {
-                req.flash('failure', 'No results found')
-                res.redirect('/')
+            console.log("what have we here?", cocktails)
+            if (typeof cocktails[0] === "undefined") {
+                req.flash('success', 'No results found')
+                res.redirect('/cocktails')
             } else {
-                    searchedCocktails = cocktails
+                    // searchedCocktails = cocktails
                     res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
             }
         })
@@ -70,17 +71,8 @@ router.post('/myFavorites', (req, res) => {
     })
 })
 
-// // GET ROUTE - list info about specific drink with add to myCocktails functionality 
-// router.get('/:id', isLoggedIn, (req, res) => {
-//     res.render('show');
-// });
 
-// POST ROUTE - when user adds to my favorites from 1Cocktail Get Page
-// router.post('/:id', isLoggedIn, (req, res) => {
-//     res.redirect('/');
-// });
-
-// GET ROUTE - users favorites
+// GET ROUTE - user's favorites
 router.get('/myCocktails', isLoggedIn, (req, res) => {
     
     db.user.findOne({
@@ -94,7 +86,7 @@ router.get('/myCocktails', isLoggedIn, (req, res) => {
     })
 });
 
-// DELETE Route - Deletes one cocktail from users favorites, delete from individual page or main listing of favorites?
+// DELETE Route - Deletes cocktails from users favorites, delete from individual page or main listing of favorites?
 router.delete('/myCocktails', (req, res) => {
     db.user.findOne({
         where: {
@@ -108,7 +100,29 @@ router.delete('/myCocktails', (req, res) => {
     })
 });
 
-// GET Route- Sam's edit recipe ideas functionality, SHOWS ONE to edit from favorites get route
+// route for creating a new, custom cocktail
+router.get('/create', isLoggedIn, (req, res) => {
+    res.render('cocktails/create')
+})
+
+router.post('/create', isLoggedIn, (req, res) => {
+    db.cocktail.create({
+        name: req.body.name,
+        primaryAlcohol: req.body.primaryAlcohol,
+        recipe: req.body.recipe,
+        url: req.body.url,
+    }).then(newCocktail => {
+        db.user.findOne({ where: { email: req.user.dataValues.email } }).then(user => {
+            user.addCocktail(newCocktail).then(relationInfo => {
+                req.flash('success', 'Success! Your creation is beautiful')
+                res.redirect('/cocktails/myCocktails')
+            })
+        })
+
+    })
+})
+
+// GET Route- edit cocktail recipes view
 router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
     db.usersCocktails.findOne({
         where: {
@@ -128,12 +142,10 @@ router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
     })
 });
 
+
+
 // PUT ROUTE- Sam's edit recipe idea, EDITS ONE that was shown
 router.put('/myFavorites/:id', isLoggedIn, (req, res) => {
-    // console.log(req.body.name)
-    // console.log(req.body.primaryAlcohol)
-    // console.log(req.body.recipe)
-    // res.send("success")
     db.cocktail.findOne({
         where: {
             name: req.body.name
