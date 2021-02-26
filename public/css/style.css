@@ -8,6 +8,10 @@ h1 {
   color: darkred;
 }
 
+#clear {
+  color:white;
+}
+
 #cocktailsHome {
   max-width: 50%;
 }
