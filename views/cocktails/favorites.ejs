@@ -1,38 +1,35 @@
 <div class="container searchResults"> 
     <!-- LEAVE DIV CLASS ABOVE SAME FOR BOOTSTRAP/STYLING ONLY -->
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th>Cocktail Name</th>
-                <th>Primary Alcohol</th>
-                <th>Recipe</th>
-                <th>Select</th>
-            </tr>
-        </thead>
-    <% if (cocktails) {%>
-    <% cocktails.forEach(function(cocktail) { %>
+    <div class="form">
         <form method="POST" action="/cocktails/myCocktails?_method=DELETE">
-            <tr>
-                <th scope="row"><a href="/cocktails/myCocktails/<%= cocktail.id %>"><%= cocktail.name%></a></th></td>
-                <td><%= cocktail.primaryAlcohol%></td>
-                <td><%= cocktail.recipe%></td>
-                <td><td><input type="checkbox" name="id" value="<%= cocktail.id %>"></td></td>
-            </tr>
-    <%})%> 
-    <% } %>
-    </table>
-            <div>
-                <button type="submit" class="btn btn-sm btn-outline-danger">Remove From Favorites</button>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Cocktail Name</th>
+                    <th>Primary Alcohol</th>
+                    <th>Recipe</th>
+                    <th></th>
+                    <th colspan="2">Select</th>
+                </tr>
+            </thead>
+                <% if (cocktails) {%>
+                <% cocktails.forEach(function(cocktail) { %>
+                <tr>
+                    <th scope="row"><a href="/cocktails/myCocktails/<%= cocktail.id %>"><%= cocktail.name%></a></th></td>
+                    <td><%= cocktail.primaryAlcohol%></td>
+                    <td><%= cocktail.recipe%></td>
+                    <td><a href="/cocktails/myCocktails/edit/<%= cocktail.id %>">Edit</a></td>
+                    <td><td><input type="checkbox" name="id" value="<%= cocktail.id %>"></td></td>
+                </tr>
+                <%})%> 
+                <% } %>
+        </table>
+            <div class="form-group d-flex justify-content-between">
+                <a href="/cocktails/create">Create New Cocktail</a>
+                <button type="submit" class="btn btn-outline-danger">Remove From Favorites</button>
             </div>
         </form>
+    </div>
+        <div>
+        </div>
 </div>
-
-
-
-
-
-
-<!-- BELOW TABLE -->
-<!-- BUTTON LEFT - EDIT SELECTED RECIPE -->
-<!-- BUTTON RIGHT - REMOVE SELECTED RECIPE -->
-

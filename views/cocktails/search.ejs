@@ -44,12 +44,12 @@
             <% for (let j=0; j<userCocktails.length; j++) {%>
                 <% i = j %> 
                 <% if (userCocktails[j].name === cocktail.name) {%> 
-                <td><button class="btn btn-primary">Favorited</button></td>
+                <td><button class="btn btn-info" disabled>Favorited</button></td>
                 <% break %> 
                 <% } %> 
                 <% } %>  
             <% if (userCocktails[i].name !== cocktail.name) {%>
-                <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
+                <td><input type="checkbox" name="name" value="<%= cocktail.name %>"></td>
             <% } %>
             <% } else {%>
                 <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
