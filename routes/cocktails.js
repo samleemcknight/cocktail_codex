@@ -25,28 +25,52 @@ router.get('/', isLoggedIn, (req, res) => {
 
 // POST route for search function
 router.post('/search', (req, res) => {
-
+    // begins with finding user data so that favorited cocktails will be noted
     db.user.findOne({
         where: {
             email: req.user.dataValues.email
         },
         include: [db.cocktail]
     }).then(user => {
+        // declares variables to be used for dynamic search terms
+        const result = req.body.searchTerm
+        let string = req.body.searchTerm.split('')
+        string[0] = string[0].toUpperCase()
+        let capSearch = string.join('')
+        let lowSearch = req.body.searchTerm.toLowerCase()
+        // searches cocktails and adjusts the search terms to fit the database
         db.cocktail.findAll({
             where: {
                 [Op.or]: [
-                    { name: { [Op.substring]: req.body.searchTerm } },
-                    { primaryAlcohol: { [Op.substring]: req.body.searchTerm } },
+                    { name: { [Op.substring]: capSearch } },
+                    { primaryAlcohol: { [Op.substring]: lowSearch } },
                 ]
             }
         }).then(cocktails => {
-            console.log("what have we here?", cocktails)
+            // if no cocktails are found, it then searches for ingredients in db with that name
             if (typeof cocktails[0] === "undefined") {
-                req.flash('success', 'No results found')
-                res.redirect('/cocktails')
-            } else {
-                    // searchedCocktails = cocktails
-                    res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
+                db.ingredient.findOne({
+                    where: {
+                        name: {
+                            [Op.substring]: lowSearch
+                        }
+                    },
+                    include: [db.cocktail]
+                }).then(ingredient => {
+                    //if no ingredients are found, it returns an error
+                    if (!ingredient) {
+                        req.flash('success', `No results found for '${result}'`)
+                        res.redirect('/cocktails')
+                    }
+                    // if ingredients are found, it returns the cocktails associated with those ingredients
+                    else {
+                        res.render('cocktails/search', { cocktails: ingredient.cocktails, userCocktails: user.cocktails })
+                    }
+                })
+            }
+            // if everything is good with the first search, it will return all cocktails 
+            else { 
+                res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
             }
         })
     })
