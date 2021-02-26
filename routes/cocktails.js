@@ -45,7 +45,6 @@ router.post('/search', (req, res) => {
                 ]
             }
         }).then(cocktails => {
-<<<<<<< HEAD
             // if no cocktails are found, it then searches for ingredients in db with that name
             if (typeof cocktails[0] === "undefined") {
                 db.ingredient.findOne({
@@ -70,15 +69,6 @@ router.post('/search', (req, res) => {
             // if everything is good with the first search, it will return all cocktails 
             else { 
                 res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
-=======
-            
-            if (typeof cocktails[0] === "undefined") {
-                req.flash('success', 'No matches found')
-                res.redirect('/cocktails')
-            } else {
-                    
-                    res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
->>>>>>> submain
             }
         })
     })
