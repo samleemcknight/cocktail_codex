@@ -24,13 +24,13 @@ This a is REST API using a Postgres SQL database. The core functionality will al
   - Ex.: ```SESSION_SECRET=bleepbloopformetoo```
 3. Create a database: ```createdb cocktail_codex_development```
 4. Migrate the database: ```sequelize db:migrate```
-5. Populate the database:```sequelize db:seed:all```
-6. INSTALLATION NOW INCLUDES HEROKU -- LINK?
+5. Populate the database: ```sequelize db:seed:all```
+6. Initialize the server in Node.
+7. Open a browser window and access local server URL: ```localhost:3000```
 
 #### LIST OF REQUIRED PLATFORMS/SOFTWARES
-* Heroku
 * Postgres
-* Node
+* Node and Node Package Manager 
 
 #### LIST OF REQUIRED NODE MODULES 
 * Express
