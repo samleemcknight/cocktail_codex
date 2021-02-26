@@ -1,29 +1,66 @@
 # Personal Cocktail Codex
-The name of this project is "A Personal Cocktail Codex Builder". 
 
-The quintessence of the application is a REST app using Node, Express, and Sequelize with 4 views. The core functionality will allow the user to search pre-populated cocktail recipes in our database. The user can add those to his profile for future easy reference and revisit to update - add more or delete only - the recipes. The site will feature authentication/authorization security protocols.
 
-The relational database will be a Many-to-Many with 3 tables: user account info table, user-selected drinks profile, and a cocktails table (id, drink name, primary alcohol, text block recipe string). The app's UX will be built using BOOTSTRAP. If time permits, the following will be a bonus: a. 1 more table in the database storing user-selected drinks table keyed by main alcohol b. connecting to TheCocktailDB API so users can look up new recipes c. custom CSS will be utilized instead of BOOTSTRAP d. 1 more view displaying the user’s account info (name, e-mail, password).
+# OVERVIEW
 
-# USER STORIES
-- As a user, I want to be able to search available cocktail recipes. 
-- As a user, I want to be able to favorite some cocktail recipes. 
-- As a user, I want to be able to add more favorite cocktail recipes. 
+
+
+REPLACE WITH FINAL SCREENSHOTS AFTER FINAL APPROVAL - EDIT
+
+
+This a is REST API using a Postgres SQL database. The core functionality will allow the user to search pre-populated cocktail recipes in our database. The user can add those to his profile for future easy reference and revisit to customize the recipes, including a delete from favorites. The relational database utilizes Many-to-Many relationships.
+
+## USER STORIES
+- As a user, I want to be able to search available cocktail recipes by drink name. 
+- As a user, I want to be able to search available cocktail recipes by primary alcohol.
+- As a user, I want to be able to add some cocktail recipes to a list of favorites. 
+- As a user, I want to be able to customize my favorite drink recipes. 
 - As a user, I want to be able to delete cocktail recipes I don’t like anymore. 
 
-# BONUS STORIES
-- As a user, I want to be able to sort my favorite recipes by primary alcohol.
-- As a user, I want to be able to look up recipes I don't know online.
-- As a user, I want to be able to view my account info. 
+## INSTALLATION - NEED EDIT
+1. Please read the below list of required modules and verify if they are installed.
+  - Use NPM to install missing modules. 
+2. Create an `.env' file and put your own session secret in it inside of your cloned repo.
+  - Ex.: ```SESSION_SECRET=bleepbloopformetoo```
+3. Create a database: ```createdb cocktail_codex_development```
+4. Migrate the database: ```sequelize db:migrate```
+5. Populate the database:```sequelize db:seed:all```
+6. INSTALLATION NOW INCLUDES HEROKU -- LINK?
 
-# WIREFRAMES 
+#### LIST OF REQUIRED PLATFORMS/SOFTWARES
+* Heroku
+* Postgres
+* Node
 
-# ERD PAGE
+#### LIST OF REQUIRED NODE MODULES 
+* Express
+* EJS Layouts
+* Express Session
+* Sequelize
+* Passport
+* Morgan
+* Method Override
+* DotEnv
+* Connect-Flash
+* Bcrypt
 
-## Installation:
-* Create an `.env' file and put your own session secret in it.
-  * Ex.: ```SESSION_SECRET=bleepbloopformetoo```
-* Run ```npm install```
-* Create a database: ```createdb cocktail_codex_development```
-* Migrate the database: ```sequelize db:migrate```
-* Populate the database:```sequelize db:seed:all```
+
+
+
+### WIREFRAMES 
+![login](public/assets/readme/wireframes/login.png)
+![search](public/assets/readme/wireframes/search.png)
+![search results](public/assets/readme/wireframes/search_results.png)
+![user favorites](public/assets/readme/wireframes/user_favorites.png)
+![edit recipe](public/assets/readme/wireframes/edit_recipe.png)
+![profile](public/assets/readme/wireframes/profile.png)
+![logout](public/assets/readme/wireframes/logout.png)
+
+
+### ERD 
+
+![ERD](public/assets/readme/erd_final.png)
+
+
+
+
