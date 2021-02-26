@@ -40,9 +40,13 @@ router.post('/search', (req, res) => {
                 ]
             }
         }).then(cocktails => {
-            searchedCocktails = cocktails
-            
-            res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
+            if(!cocktails) {
+                req.flash('failure', 'No results found')
+                res.redirect('/')
+            } else {
+                    searchedCocktails = cocktails
+                    res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
+            }
         })
     })
 })

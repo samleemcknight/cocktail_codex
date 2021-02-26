@@ -9,17 +9,17 @@
         <form action="/auth/login" method="GET">
         <div class="col-md-12 justify-content-center">
             <p class="text-center">Name</p>
-            <input id="user-name" type="text" name="name" value="" class="text-center">
+            <input id="user-name" type="text" name="name" value="<%= user.name%>" class="text-center" readonly>
         </div>
         
         <div class="col-md-12 justify-content-center">
             <p class="text-center">Email</p>
-            <input id="user-email" type="email" name="email" value="" class="text-center">
+            <input id="user-email" type="email" name="email" value="<%= user.email%>" class="text-center" readonly>
         </div>
         
         <div class="col-md-12 justify-content-center">
             <p class="text-center">Password</p>
-            <input id="user-password" type="password" name="password" value="" class="text-center">
+            <input id="user-password" type="password" name="password" value="<%= user.password%>" class="text-center" readonly>
         </div>
         </form>
     </div>
