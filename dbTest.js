@@ -109,10 +109,67 @@ const { Op } = require("sequelize");
 //     })
 // })
 
-db.cocktail.findOne({
-    where: {
-        name: 'Booby Babby'
-    }
-}).then(cocktail => {
-    console.log(cocktail)
-})
+let string = 'morgan'
+    // begins with finding user data so that favorited cocktails will be noted
+    db.user.findOne({
+        where: {
+            email: req.user.dataValues.email
+        },
+        include: [db.cocktail]
+    }).then(user => {
+        let incompleteSearch = req.body.searchTerm.split('').slice(0, 2)
+        let string = req.body.searchTerm.split('')
+        string[0] = string[0].toUpperCase()
+        let capSearch = string.join('')
+        
+        db.cocktail.findAll({
+            where: {
+                [Op.or]: [
+                    { name: { [Op.substring]: capSearch } }, 
+                    { primaryAlcohol: { [Op.substring]: req.body.searchTerm.toLowerCase() } },
+                ]
+            }
+        }).then(cocktails => {
+            if (typeof cocktails[0] === "undefined") {
+                db.ingredient.findOne({
+                    where: {
+                        [Op.or]: [
+                            { name: { [Op.substring]: req.body.searchTerm.toLowerCase()}},
+                            { name: { [Op.startsWith]: incompleteSearch.join('')}}
+                        ]
+                    },
+                    include: [db.cocktail]
+                }).then(ingredient => {
+                    if (!ingredient) {
+                        console.log('No cocktails or ingredients found with those search terms')
+                        req.flash('success', 'No results found')
+                        res.redirect('/cocktails')
+                    }
+                    else {
+                        console.log(`found ${ingredient.cocktails.length} cocktails associtated with ${string}`)
+                        console.log("-----------------------------")
+                        console.log(`Here are the cocktails that use ${ingredient.name}:`)
+                        ingredient.cocktails.forEach(el => console.log(el.name))
+                        console.log("-----------------------------")
+                        res.render('cocktails/search', { cocktails: ingredient.cocktails, userCocktails: user.cocktails })
+                    }
+                })
+            }
+            else {
+                console.log(`found ${cocktails.length} cocktails associtated with ${string}`)
+                res.render('cocktails/search', { cocktails: cocktails, userCocktails: user.cocktails })
+            }
+        })
+    })
+
+// db.ingredient.findOne({
+//     where: {
+//         name: { [Op.substring]: 'kahlua' }
+//     },
+//     include: [db.cocktail]
+// }).then(ingredient => {
+//     console.log("-----------------------------")
+//     console.log(`Here are the cocktails that use ${ingredient.name}:`)
+//     ingredient.cocktails.forEach(el => console.log(el.name))
+//     console.log("-----------------------------")
+// })

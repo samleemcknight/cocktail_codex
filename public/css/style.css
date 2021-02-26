@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
 nav ul li {
   text-decoration: none;
   display: inline-block;
@@ -5,12 +6,12 @@ nav ul li {
 }
 
 body {
-  font-family: ‘Raleway’, sans-serif;
+  font-family: 'Raleway', sans-serif;;
 }
 
 h1 {
   color: darkred;
-  font-family: ‘Slackey’, cursive;
+  font-family: 'Slackey', cursive;
 }
 
 #clear {
