@@ -60,7 +60,3 @@ This a is REST API using a Postgres SQL database. The core functionality will al
 ### ERD 
 
 ![ERD](public/assets/readme/erd_final.png)
-
-
-
-

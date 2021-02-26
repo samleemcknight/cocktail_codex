@@ -15,7 +15,9 @@
             </div>
             <div class="ButtonRow">
                 <button class="btn btn-primary" type="submit">Submit Search</button>
-                <button class="btn btn-secondary" type="submit">Clear</button>
+                <% if (cocktails) {%>
+                <button class="btn btn-secondary" type="button" disabled><a id="clear" href="/cocktails/">Clear</a></button>
+                <% } %> 
             </div>
         </form>
     </div>
@@ -24,16 +26,16 @@
     <!-- Returned Search Results -->
 <div class="searchResults col-md-12 d-flex justify-content-center">
     <table class="table">
-        <thead>
-            <tr>
-                <th>Cocktail Name</th>
-                <th>Primary Alcohol</th>
-                <th>Recipe</th>
-                <th>Select</th>
-            </tr>
-        </thead>
-    <% if (cocktails) {%>
-    <% cocktails.forEach(cocktail => {%>
+        <% if (cocktails) {%>
+            <% cocktails.forEach(cocktail => {%>
+                <thead>
+                    <tr>
+                        <th>Cocktail Name</th>
+                        <th>Primary Alcohol</th>
+                        <th>Recipe</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
         <form method="POST" action="/cocktails/myFavorites">
             <tr>
                 <td><%= cocktail.name%></td>
@@ -52,7 +54,7 @@
                 <td><input type="checkbox" name="name" value="<%= cocktail.name %>"></td>
             <% } %>
             <% } else {%>
-                <td><input type="radio" name="name" value="<%= cocktail.name %>"></td>
+                <td><input type="checkbox" name="name" value="<%= cocktail.name %>"></td>
             <% } %> 
             </tr>
     <%})%> 
