@@ -51,8 +51,9 @@ app.get('/', (req, res) => {
 
 // IN BROCK'S TEMPLATE, GET route for profile page
 app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
+  res.render('profile', {user: req.user.dataValues});
 });
+
 
 app.use('/auth', require('./routes/auth'));
 
