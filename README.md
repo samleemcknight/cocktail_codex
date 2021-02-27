@@ -17,7 +17,7 @@ This a is REST API using a Postgres SQL database. The core functionality will al
 - As a user, I want to be able to customize my favorite drink recipes. 
 - As a user, I want to be able to delete cocktail recipes I don’t like anymore. 
 
-## INSTALLATION - NEED EDIT
+## INSTALLATION
 1. Please read the below list of required modules and verify if they are installed.
   - Use NPM to install missing modules. 
 2. Create an `.env' file and put your own session secret in it inside of your cloned repo.

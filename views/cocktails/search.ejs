@@ -6,14 +6,14 @@
     </div>
     <div class="col-md-12 d-flex justify-content-center searchForm">
         <form action="/cocktails/search" method="POST">
-            <div class="searchField">
-                <label for ="searchTerm">Pick Your Poison</label>
-                <input type="text" class="formField" id="formField" name="searchTerm" value="" placeholder="Cocktail or Alcohol Name" required>
+            <div class="searchField form-group">
+                <label for ="searchTerm"></label>
+                <input type="text" class="formField" id="formField" name="searchTerm" value="" placeholder="Pick Your Poison" required>
             </div>
-            <div class="ButtonRow">
+            <div class="ButtonRow form-group">
                 <button class="btn btn-primary" type="submit">Submit Search</button>
                 <% if (cocktails) {%>
-                <button class="btn btn-secondary" type="button" disabled><a id="clear" href="/cocktails/">Clear</a></button>
+                <button class="btn btn-primary" type="button" disabled><a id="clear" href="/cocktails/">Clear</a></button>
                 <% } %> 
             </div>
         </form>
@@ -56,7 +56,9 @@
     </table>
 </div>
             <div class="addFavorites col-md-12 d-flex justify-content-center">
-                <button type="submit">Add to Favorites</button>
+                <% if (cocktails) {%>
+                <button class = "btn btn-primary" type="submit">Add to Favorites</button>
+                <% } %> 
             </div>
         </form>
 </div>
