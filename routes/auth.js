@@ -36,7 +36,6 @@ router.post('/signup', (req, res) => {
     res.redirect('/auth/signup')
   })
 })
-// UNSURE ABOUT PATHING HERE LINES 28,33
 
 // GET ROUTES FOR LOGIN PAGE
 router.get('/login', (req, res) => {
@@ -54,7 +53,7 @@ router.post('/login', passport.authenticate('local', {
 // GET ROUTE FOR LOGOUT PAGE
 router.get('/logout', (req, res) => {
   req.logout()
-  req.flash('success', 'See you later, Tom Cruise!')
+  req.flash('success', 'See you later, Sterling Archer!')
   res.redirect('/')
 })
 

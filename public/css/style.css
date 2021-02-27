@@ -3,6 +3,15 @@ nav ul li {
   text-decoration: none;
   display: inline-block;
   margin-right: .3em;
+  color: white;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: rgb(164, 164, 164);
 }
 
 a {
@@ -19,13 +28,13 @@ body {
   background-attachment: fixed;
 }
 
+form {
+  font-family: 'Raleway', sans-serif;
+}
+
 h1 {
   color: darkred;
   font-family: 'Slackey', cursive;
-}
-
-#clear {
-  color: white;
 }
 
 #cocktailsHome {
@@ -43,4 +52,15 @@ h1 {
 
 .cocktail-img {
   max-width: 150px;
+}
+
+#dashboard {
+  text-align: center;
+  color: white;
+}
+
+#userAvatar {
+  border-radius: 30%;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
