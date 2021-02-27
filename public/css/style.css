@@ -5,8 +5,18 @@ nav ul li {
   margin-right: .3em;
 }
 
+a {
+  color: white;
+}
+
+a:hover {
+  color: gray;
+}
+
 body {
   font-family: 'Raleway', sans-serif;;
+  background-image: linear-gradient(rgb(46, 19, 19) 80%, rgb(11, 5, 5));
+  background-attachment: fixed;
 }
 
 h1 {
@@ -15,11 +25,12 @@ h1 {
 }
 
 #clear {
-  color:white;
+  color: white;
 }
 
 #cocktailsHome {
   max-width: 50%;
+  margin-bottom: 20px;
 }
 
 #userAvatar {
