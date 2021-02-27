@@ -17,20 +17,20 @@ This a is REST API using a Postgres SQL database. The core functionality will al
 - As a user, I want to be able to customize my favorite drink recipes. 
 - As a user, I want to be able to delete cocktail recipes I don’t like anymore. 
 
-## INSTALLATION - NEED EDIT
+## INSTALLATION
 1. Please read the below list of required modules and verify if they are installed.
   - Use NPM to install missing modules. 
 2. Create an `.env' file and put your own session secret in it inside of your cloned repo.
   - Ex.: ```SESSION_SECRET=bleepbloopformetoo```
 3. Create a database: ```createdb cocktail_codex_development```
 4. Migrate the database: ```sequelize db:migrate```
-5. Populate the database:```sequelize db:seed:all```
-6. INSTALLATION NOW INCLUDES HEROKU -- LINK?
+5. Populate the database: ```sequelize db:seed:all```
+6. Initialize the server in Node.
+7. Open a browser window and access local server URL: ```localhost:3000```
 
 #### LIST OF REQUIRED PLATFORMS/SOFTWARES
-* Heroku
 * Postgres
-* Node
+* Node and Node Package Manager 
 
 #### LIST OF REQUIRED NODE MODULES 
 * Express

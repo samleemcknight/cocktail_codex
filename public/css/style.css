@@ -1,15 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
+body {
+  font-family: 'Raleway', sans-serif;;
+  background-image: linear-gradient(rgb(46, 19, 19) 85%, rgb(11, 5, 5));
+  background-attachment: fixed;
+}
+
 nav ul li {
   text-decoration: none;
   display: inline-block;
   margin-right: .3em;
+  color: white;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: rgb(164, 164, 164);
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: gray;
+}
+
+form {
+  font-family: 'Raleway', sans-serif;
+}
+
+#small>p {
+  margin-top: -15px;
+  color: white;
 }
 
 h1 {
   color: darkred;
+  font-family: 'Slackey', cursive;
+}
+
+#favoriteButton {
+  margin-bottom: 30px;
 }
 
 #cocktailsHome {
   max-width: 50%;
+  margin-bottom: 20px;
 }
 
 #userAvatar {
@@ -22,4 +61,15 @@ h1 {
 
 .cocktail-img {
   max-width: 150px;
+}
+
+#dashboard {
+  text-align: center;
+  color: white;
+}
+
+#userAvatar {
+  border-radius: 30%;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }

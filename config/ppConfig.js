@@ -5,15 +5,13 @@ const db = require("../models")
 
 // serializeUser - converts objects to a unique identifier
 passport.serializeUser((user, cb) => {
-  console.log('----- IN SERIALIZE USER FUNCTION', user, cb)
-
   cb(null, user.id)
 })
 
 // deserializeUser - takes the unique identifier and uses it 
 // to find a record in the DB
 passport.deserializeUser((id, cb) => {
-  console.log('----- IN DESERIALIZE USER FUNCTION', id)
+ 
   db.user.findByPk(id).then(user => {
     cb(null, user)
   }).catch(cb)
@@ -25,7 +23,6 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 }, (email, password, cb) => {
 
-  console.log('----- IN STRATEGY CB USER FUNCTION', email, password)
 
   // see if the user exists
   db.user.findOne({

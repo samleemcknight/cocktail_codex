@@ -20,9 +20,10 @@ router.post('/signup', (req, res) => {
   }).then(([user, created]) => {
     if (created) {
       // success
+      let message = `Welcome, ${req.body.name}`
       passport.authenticate('local', {
         successRedirect: '/cocktails',
-        successFlash: 'Account created and user logged in!'
+        successFlash: message
       })(req, res)
     } else {
       // user already exists, so we redirect
@@ -32,10 +33,9 @@ router.post('/signup', (req, res) => {
   }).catch(error => {
     // if an error occurs, console log the error message
     req.flash('error', error.message)
-    res.redirect('/signup')
+    res.redirect('/auth/signup')
   })
 })
-// UNSURE ABOUT PATHING HERE LINES 28,33
 
 // GET ROUTES FOR LOGIN PAGE
 router.get('/login', (req, res) => {
@@ -46,14 +46,14 @@ router.get('/login', (req, res) => {
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/cocktails',
   failureRedirect: '/',
-  successFlash: 'You have logged in!',
+  successFlash: 'Welcome back!',
   failureFlash: 'Invalid username and/or password.'
 }))
 
 // GET ROUTE FOR LOGOUT PAGE
 router.get('/logout', (req, res) => {
   req.logout()
-  req.flash('success', 'You have logged out!')
+  req.flash('success', 'See you later, Sterling Archer!')
   res.redirect('/')
 })
 
