@@ -76,21 +76,26 @@ router.post('/search', (req, res) => {
 
 // POST for add to favorites
 router.post('/myFavorites', (req, res) => {
-    
+    if (typeof req.body.name === "undefined") {
+        req.flash('error', 'you didn\'t pick anything!')
+        res.redirect('/cocktails')
+    }
+    else {
     db.user.findOne({
         where: { email: req.user.dataValues.email}
     }).then(user => {
         db.cocktail.findAll({
             where: { name: req.body.name }
         }).then(cocktail => {
-            // additionally, in the return searched cocktails, take out the cocktail that was added
-            // or somehow render the cocktails in such a way that the added cocktail doesn't appear again
-            user.addCocktails(cocktail).then(relationInfo => {
-                req.flash('success', 'You have a new favorite cocktail.')
-                res.redirect('/cocktails')
-            })
+
+                user.addCocktails(cocktail).then(relationInfo => {
+                    req.flash('success', 'You have a new favorite cocktail.')
+                    res.redirect('/cocktails')
+                })
+            
         })
     })
+}
 })
 
 
