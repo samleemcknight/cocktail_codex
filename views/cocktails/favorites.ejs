@@ -1,4 +1,4 @@
-<div class="container searchResults"> 
+<div class="searchResults"> 
     <div class="form">
         <form method="POST" action="/cocktails/myCocktails?_method=DELETE">
         <table class="table">
@@ -8,7 +8,7 @@
                     <th>Primary Alcohol</th>
                     <th>Recipe</th>
                     <th></th>
-                    <th colspan="2">Select</th>
+                    <th colspan="2" id="selectFavoriteTag">Select</th>
                 </tr>
             </thead>
                 <% if (cocktails) {%>
@@ -18,7 +18,7 @@
                     <td><%= cocktail.primaryAlcohol%></td>
                     <td><%= cocktail.recipe%></td>
                     <td><a href="/cocktails/myCocktails/edit/<%= cocktail.id %>">Edit</a></td>
-                    <td><td><input type="checkbox" name="id" value="<%= cocktail.id %>"></td></td>
+                    <td><td><input type="checkbox" class= "checkfavorite" name="id" value="<%= cocktail.id %>"></td></td>
                 </tr>
                 <%})%> 
                 <% } %>

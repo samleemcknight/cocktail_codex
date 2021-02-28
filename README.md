@@ -1,14 +1,18 @@
-# Personal Cocktail Codex
+# PERSONAL COCKTAIL CODEX
 
 
 # OVERVIEW
 
-
-
-REPLACE WITH FINAL SCREENSHOTS AFTER FINAL APPROVAL - EDIT
-
+![sg1](public/assets/readme/wireframes/readme1.png)
+![sg2](public/assets/readme/wireframes/readme2.png)
+![sg3](public/assets/readme/wireframes/readme3.png)
+![sg4](public/assets/readme/wireframes/readme4.png)
+![sg5](public/assets/readme/wireframes/readme5.png)
+![sg6](public/assets/readme/wireframes/readme6.png)
 
 This a is REST API using a Postgres SQL database. The core functionality will allow the user to search pre-populated cocktail recipes in our database. The user can add those to his profile for future easy reference and revisit to customize the recipes, including a delete from favorites. The relational database utilizes Many-to-Many relationships.
+
+The app is currently deployed on [Heroku](https://cocktail-codex.herokuapp.com/).
 
 ## USER STORIES
 - As a user, I want to be able to search available cocktail recipes by drink name. 
