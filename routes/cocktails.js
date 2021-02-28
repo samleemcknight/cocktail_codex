@@ -10,7 +10,6 @@ let searchedCocktails = null
 
 router.get('/', isLoggedIn, (req, res) => {
     let cocktails = searchedCocktails
-    
     db.user.findOne({
         where: {
             email: req.user.dataValues.email
@@ -87,28 +86,23 @@ router.post('/myFavorites', (req, res) => {
         db.cocktail.findAll({
             where: { name: req.body.name }
         }).then(cocktail => {
-
                 user.addCocktails(cocktail).then(relationInfo => {
                     req.flash('success', 'You have new favorite cocktail(s).')
                     res.redirect('/cocktails')
                 })
-            
         })
     })
 }
 })
 
-
 // GET ROUTE - user's favorites
 router.get('/myCocktails', isLoggedIn, (req, res) => {
-    
     db.user.findOne({
         where: {
             email: req.user.dataValues.email
         },
         include: [db.cocktail]
     }).then(user => {
-        
         res.render('cocktails/favorites', {cocktails: user.cocktails})
     })
 });
@@ -131,7 +125,6 @@ router.delete('/myCocktails', (req, res) => {
 router.get('/create', isLoggedIn, (req, res) => {
     res.render('cocktails/create')
 })
-
 router.post('/create', isLoggedIn, (req, res) => {
     db.cocktail.create({
         name: req.body.name,
@@ -145,7 +138,6 @@ router.post('/create', isLoggedIn, (req, res) => {
                 res.redirect('/cocktails/myCocktails')
             })
         })
-
     })
 })
 
@@ -162,12 +154,10 @@ router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
                 id: data.cocktailId
             }
         }).then(cocktail => {
-            
             res.render('cocktails/show', {cocktail: cocktail});
         })
     })
 })
-
 
 // GET Route- edit cocktail recipes view
 router.get('/myCocktails/edit/:id', isLoggedIn, (req, res) => {
@@ -183,13 +173,10 @@ router.get('/myCocktails/edit/:id', isLoggedIn, (req, res) => {
                 id: data.cocktailId
             }
         }).then(cocktail => {
-            
             res.render('cocktails/edit', {cocktail: cocktail});
         })
     })
 });
-
-
 
 // PUT ROUTE- EDITS ONE that was shown
 router.put('/myFavorites/:id', isLoggedIn, (req, res) => {
@@ -226,5 +213,4 @@ router.put('/myFavorites/:id', isLoggedIn, (req, res) => {
     }
     })
 })
-
 module.exports = router;
