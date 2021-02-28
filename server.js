@@ -44,16 +44,15 @@ app.use((req, res, next) => {
 })
 
 
-// IN BROCK'S TEMPLATE, GET ROUTES FOR HOME PAGE - DO I HAVE TO PUT THE PATH FOR THE REDIRECT IN THIS?
+// GET ROUTES FOR HOME PAGE
 app.get('/', (req, res) => {
   res.render('./auth/login');
 });
 
-// IN BROCK'S TEMPLATE, GET route for profile page
+// GET route for profile page
 app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', {user: req.user.dataValues});
 });
-
 
 app.use('/auth', require('./routes/auth'));
 

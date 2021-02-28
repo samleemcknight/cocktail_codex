@@ -1,31 +1,34 @@
-<div class="container searchResults"> 
-    <div class="form">
+<div class="searchResults"> 
+    <div class="form table-responsive-sm">
         <form method="POST" action="/cocktails/myCocktails?_method=DELETE">
         <table class="table">
             <thead class="thead-dark">
                 <tr>
                     <th>Cocktail Name</th>
                     <th>Primary Alcohol</th>
-                    <th>Recipe</th>
-                    <th></th>
-                    <th colspan="2">Select</th>
+                    <th class="recipe">Recipe</th>
+                    <th class="edit"></th>
+                    <th colspan="2" id="selectFavoriteTag">Select</th>
                 </tr>
             </thead>
                 <% if (cocktails) {%>
                 <% cocktails.forEach(function(cocktail) { %>
                 <tr>
-                    <th scope="row"><a href="/cocktails/myCocktails/<%= cocktail.id %>"><%= cocktail.name%></a></th></td>
+                    <th scope="row" class="cocktailName"><a href="/cocktails/myCocktails/<%= cocktail.id %>"><%= cocktail.name%></a>
+                    <br><br>
+                    <small class="showEdit"><a href="/cocktails/myCocktails/edit/<%= cocktail.id %>">Edit</a><small>
+                    </th>
                     <td><%= cocktail.primaryAlcohol%></td>
-                    <td><%= cocktail.recipe%></td>
-                    <td><a href="/cocktails/myCocktails/edit/<%= cocktail.id %>">Edit</a></td>
-                    <td><td><input type="checkbox" name="id" value="<%= cocktail.id %>"></td></td>
+                    <td class="recipe"><%= cocktail.recipe%></td>
+                    <td class="edit"><a href="/cocktails/myCocktails/edit/<%= cocktail.id %>">Edit</a></td>
+                    <td><td><input type="checkbox" class="checksearch" name="id" value="<%= cocktail.id %>"></td></td>
                 </tr>
                 <%})%> 
                 <% } %>
         </table>
             <div class="form-group d-flex justify-content-between">
-                <a href="/cocktails/create" class="btn btn-outline-info" role="button">Create New Cocktail</a>
-                <button type="submit" class="btn btn-outline-danger">Remove From Favorites</button>
+                <a href="/cocktails/create" class="btn btn-outline-info footerButtons" role="button">Create New Cocktail</a>
+                <button type="submit" class="btn btn-outline-danger footerButtons">Remove From Favorites</button>
             </div>
         </form>
     </div>

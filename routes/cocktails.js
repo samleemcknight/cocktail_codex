@@ -10,7 +10,6 @@ let searchedCocktails = null
 
 router.get('/', isLoggedIn, (req, res) => {
     let cocktails = searchedCocktails
-    
     db.user.findOne({
         where: {
             email: req.user.dataValues.email
@@ -32,16 +31,16 @@ router.post('/search', (req, res) => {
     }).then(user => {
         // declares variables to be used for dynamic search terms
         const result = req.body.searchTerm
-        let string = req.body.searchTerm.split('')
+        let string = result.split('')
         string[0] = string[0].toUpperCase()
         let capSearch = string.join('')
-        let lowSearch = req.body.searchTerm.toLowerCase()
+        
         // searches cocktails and adjusts the search terms to fit the database
         db.cocktail.findAll({
             where: {
                 [Op.or]: [
                     { name: { [Op.substring]: capSearch } },
-                    { primaryAlcohol: { [Op.substring]: lowSearch } },
+                    { primaryAlcohol: { [Op.substring]: result.toLowerCase() } },
                 ]
             }
         }).then(cocktails => {
@@ -50,7 +49,7 @@ router.post('/search', (req, res) => {
                 db.ingredient.findOne({
                     where: {
                         name: {
-                            [Op.substring]: lowSearch
+                            [Op.substring]: result.toLowerCase()
                         }
                     },
                     include: [db.cocktail]
@@ -76,6 +75,7 @@ router.post('/search', (req, res) => {
 
 // POST for add to favorites
 router.post('/myFavorites', (req, res) => {
+    let length = req.body.name.length
     if (typeof req.body.name === "undefined") {
         req.flash('error', 'you didn\'t pick anything!')
         res.redirect('/cocktails')
@@ -87,28 +87,23 @@ router.post('/myFavorites', (req, res) => {
         db.cocktail.findAll({
             where: { name: req.body.name }
         }).then(cocktail => {
-
                 user.addCocktails(cocktail).then(relationInfo => {
-                    req.flash('success', 'You have a new favorite cocktail.')
+                    req.flash('success', `${length} cocktail(s) favorited.`)
                     res.redirect('/cocktails')
                 })
-            
         })
     })
 }
 })
 
-
 // GET ROUTE - user's favorites
 router.get('/myCocktails', isLoggedIn, (req, res) => {
-    
     db.user.findOne({
         where: {
             email: req.user.dataValues.email
         },
         include: [db.cocktail]
     }).then(user => {
-        
         res.render('cocktails/favorites', {cocktails: user.cocktails})
     })
 });
@@ -131,7 +126,6 @@ router.delete('/myCocktails', (req, res) => {
 router.get('/create', isLoggedIn, (req, res) => {
     res.render('cocktails/create')
 })
-
 router.post('/create', isLoggedIn, (req, res) => {
     db.cocktail.create({
         name: req.body.name,
@@ -145,7 +139,6 @@ router.post('/create', isLoggedIn, (req, res) => {
                 res.redirect('/cocktails/myCocktails')
             })
         })
-
     })
 })
 
@@ -162,12 +155,10 @@ router.get('/myCocktails/:id', isLoggedIn, (req, res) => {
                 id: data.cocktailId
             }
         }).then(cocktail => {
-            
             res.render('cocktails/show', {cocktail: cocktail});
         })
     })
 })
-
 
 // GET Route- edit cocktail recipes view
 router.get('/myCocktails/edit/:id', isLoggedIn, (req, res) => {
@@ -183,13 +174,10 @@ router.get('/myCocktails/edit/:id', isLoggedIn, (req, res) => {
                 id: data.cocktailId
             }
         }).then(cocktail => {
-            
             res.render('cocktails/edit', {cocktail: cocktail});
         })
     })
 });
-
-
 
 // PUT ROUTE- EDITS ONE that was shown
 router.put('/myFavorites/:id', isLoggedIn, (req, res) => {
@@ -226,5 +214,4 @@ router.put('/myFavorites/:id', isLoggedIn, (req, res) => {
     }
     })
 })
-
 module.exports = router;

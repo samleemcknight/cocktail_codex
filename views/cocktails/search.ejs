@@ -1,15 +1,11 @@
-
 <div class="container">
     <div= class="text-center searchInfo">
     <h1>COCKTAIL SEARCH</h1>
-    <p>When you see a drink you like, you can add it to your favorites</p>
+    <p>When you see a drink you like, you can add it to your favorites.</p>
     </div>
     <div class="col-md-12 d-flex justify-content-center searchForm">
         <form action="/cocktails/search" method="POST">
             <input type="text" class="form-group text-center" id="formField" name="searchTerm" value="" placeholder="Pick Your Poison" required>
-            <small class="form-text text-muted form-group text-center" id="small">
-                <p>(Or just type it)</p>
-            </small>
             <div class="form-group d-flex justify-content-center">
                 <button class="btn btn-primary" type="submit">Submit Search</button>
             </div>
@@ -20,14 +16,14 @@
             </div>
         </form>
     </div>
-    <div class="searchResults col-md-12 d-flex justify-content-center">
+    <div class="searchResults table-responsive-sm">
         <table class="table">
         <% if (cocktails) {%>
             <thead>
                 <tr>
                     <th>Cocktail Name</th>
                     <th>Primary Alcohol</th>
-                    <th>Recipe</th>
+                    <th class="recipe">Recipe</th>
                     <th>Select</th>
                 </tr>
             </thead>
@@ -36,21 +32,21 @@
                 <tr>
                     <td><%= cocktail.name%></td>
                     <td><%= cocktail.primaryAlcohol%></td>
-                    <td><%= cocktail.recipe%></td>
+                    <td class="recipe"><%= cocktail.recipe%></td>
                 <% let i = null %>  
                 <% if (typeof userCocktails[0] !== "undefined") {%> 
                 <% for (let j=0; j<userCocktails.length; j++) {%>
                     <% i = j %> 
                     <% if (userCocktails[j].name === cocktail.name) {%> 
-                    <td><button class="btn btn-info" disabled>Favorited</button></td>
+                    <td><button class="btn btn-sm btn-info" id="favoriteButton" disabled>Favorited</button></td>
                     <% break %> 
                     <% } %> 
                     <% } %>  
                 <% if (userCocktails[i].name !== cocktail.name) {%>
-                    <td><input type="checkbox" name="name" value="<%= cocktail.name %>"></td>
+                    <td><input type="checkbox" class="checksearch" name="name" value="<%= cocktail.name %>"></td>
                 <% } %>
                 <% } else {%>
-                    <td><input type="checkbox" name="name" value="<%= cocktail.name %>"></td>
+                    <td><input type="checkbox" class="checksearch" name="name" value="<%= cocktail.name %>"></td>
                 <% } %> 
                 </tr>
             <%})%> 
@@ -58,24 +54,9 @@
         </table>
     </div>
         <% if (cocktails) {%> 
-        <div class="addFavorites col-md-12 d-flex justify-content-center" id="favoriteButton">
+        <div class="addFavorites col-md-12 d-flex justify-content-center" id="favoriteSubmit">
             <button class="btn btn-outline-info" type="submit">Add to Favorites</button>
         </div>
         <% } %> 
             </form>
 </div>
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-

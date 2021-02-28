@@ -20,7 +20,7 @@ router.post('/signup', (req, res) => {
   }).then(([user, created]) => {
     if (created) {
       // success
-      let message = `Welcome, ${req.body.name}`
+      let message = `Welcome, ${req.body.name}!`
       passport.authenticate('local', {
         successRedirect: '/cocktails',
         successFlash: message
