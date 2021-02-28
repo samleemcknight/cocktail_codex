@@ -42,12 +42,29 @@ h1 {
   font-family: 'Slackey', cursive;
 }
 
-#favoriteButton {
+tr>td, tr>th {
+  color: rgb(201, 189, 189);
+}
+
+.edit {
+  text-decoration: underline;
+}
+
+.showEdit {
+  display: none;
+}
+
+.cocktailName {
+  text-decoration: underline;
+  font-weight: 300;
+}
+
+#favoriteSubmit {
   margin-bottom: 30px;
 }
 
 #cocktailsHome {
-  max-width: 50%;
+  max-width: 45%;
   margin-bottom: 20px;
 }
 
@@ -75,7 +92,7 @@ h1 {
 }
 
 .checksearch {
-  float right;
+  float: right;
   margin-left: 22px;
 }
 
@@ -92,4 +109,30 @@ p.registerEmail {
 
 p.registerPassword {
   margin-top: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .recipe {
+    display: none;
+  }
+  #favoriteButton {
+    font-size: 10px;
+    float: left;
+  }
+  .checksearch {
+    float: left;
+  }
+  .showEdit {
+    display: block;
+    text-decoration: underline;
+  }
+  .showEdit a {
+    color: gray;
+  }
+  .edit {
+    display: none;
+  }
+  .footerButtons {
+    max-width: 40%;
+  }
 }

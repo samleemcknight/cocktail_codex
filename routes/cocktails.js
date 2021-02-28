@@ -31,16 +31,16 @@ router.post('/search', (req, res) => {
     }).then(user => {
         // declares variables to be used for dynamic search terms
         const result = req.body.searchTerm
-        let string = req.body.searchTerm.split('')
+        let string = result.split('')
         string[0] = string[0].toUpperCase()
         let capSearch = string.join('')
-        let lowSearch = req.body.searchTerm.toLowerCase()
+        
         // searches cocktails and adjusts the search terms to fit the database
         db.cocktail.findAll({
             where: {
                 [Op.or]: [
                     { name: { [Op.substring]: capSearch } },
-                    { primaryAlcohol: { [Op.substring]: lowSearch } },
+                    { primaryAlcohol: { [Op.substring]: result.toLowerCase() } },
                 ]
             }
         }).then(cocktails => {
@@ -49,7 +49,7 @@ router.post('/search', (req, res) => {
                 db.ingredient.findOne({
                     where: {
                         name: {
-                            [Op.substring]: lowSearch
+                            [Op.substring]: result.toLowerCase()
                         }
                     },
                     include: [db.cocktail]
@@ -75,6 +75,7 @@ router.post('/search', (req, res) => {
 
 // POST for add to favorites
 router.post('/myFavorites', (req, res) => {
+    let length = req.body.name.length
     if (typeof req.body.name === "undefined") {
         req.flash('error', 'you didn\'t pick anything!')
         res.redirect('/cocktails')
@@ -87,7 +88,7 @@ router.post('/myFavorites', (req, res) => {
             where: { name: req.body.name }
         }).then(cocktail => {
                 user.addCocktails(cocktail).then(relationInfo => {
-                    req.flash('success', 'You have new favorite cocktail(s).')
+                    req.flash('success', `${length} cocktail(s) favorited.`)
                     res.redirect('/cocktails')
                 })
         })
