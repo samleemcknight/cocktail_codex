@@ -67,7 +67,7 @@ tr>td, tr>th {
 }
 
 #userAvatar {
-  max-width: 100px;
+  max-width: 10%;
 }
 
 .italics {
@@ -110,6 +110,9 @@ p.registerPassword {
 }
 
 @media only screen and (max-width: 600px) {
+  #userAvatar {
+    max-width: 30%;
+  }
   .recipe {
     display: none;
   }
