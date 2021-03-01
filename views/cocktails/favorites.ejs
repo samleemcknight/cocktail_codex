@@ -23,6 +23,14 @@
                     <td class="edit"><a href="/cocktails/myCocktails/edit/<%= cocktail.id %>">Edit</a></td>
                     <td><td><input type="checkbox" class="checksearch" name="id" value="<%= cocktail.id %>"></td></td>
                 </tr>
+
+                <tr>
+                    <td colspan="4" class="text-center showRecipe">
+                        <small class="font-italic">
+                            <%= cocktail.recipe %>
+                        </small>
+                    </td>
+                </tr>
                 <%})%> 
                 <% } %>
         </table>

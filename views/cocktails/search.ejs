@@ -21,10 +21,10 @@
         <% if (cocktails) {%>
             <thead>
                 <tr>
-                    <th>Cocktail Name</th>
-                    <th>Primary Alcohol</th>
-                    <th class="recipe">Recipe</th>
-                    <th>Select</th>
+                    <th scope="col">Cocktail Name</th>
+                    <th scope="col">Primary Alcohol</th>
+                    <th class="col recipe">Recipe</th>
+                    <th scope="col">Select</th>
                 </tr>
             </thead>
                 <% cocktails.forEach(cocktail => {%>
@@ -48,6 +48,12 @@
                 <% } else {%>
                     <td><input type="checkbox" class="checksearch" name="name" value="<%= cocktail.name %>"></td>
                 <% } %> 
+                </tr>
+                
+                <tr>
+                    <td colspan="3" class="text-center showRecipe">
+                        <small class="font-italic"><%= cocktail.recipe %></small>
+                    </td>
                 </tr>
             <%})%> 
         <% } %>
