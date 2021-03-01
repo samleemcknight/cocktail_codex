@@ -75,7 +75,6 @@ router.post('/search', (req, res) => {
 
 // POST for add to favorites
 router.post('/myFavorites', (req, res) => {
-    let length = req.body.name.length
     if (typeof req.body.name === "undefined") {
         req.flash('error', 'you didn\'t pick anything!')
         res.redirect('/cocktails')
@@ -88,7 +87,7 @@ router.post('/myFavorites', (req, res) => {
             where: { name: req.body.name }
         }).then(cocktail => {
                 user.addCocktails(cocktail).then(relationInfo => {
-                    req.flash('success', `${length} cocktail(s) favorited.`)
+                    req.flash('success', 'You have new favorite cocktail(s).')
                     res.redirect('/cocktails')
                 })
         })
