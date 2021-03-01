@@ -46,16 +46,14 @@ tr>td, tr>th {
   color: rgb(201, 189, 189);
 }
 
-.edit {
-  text-decoration: underline;
-}
-
 .showEdit {
   display: none;
 }
 
+.showRecipe {
+  display: none;
+}
 .cocktailName {
-  text-decoration: underline;
   font-weight: 300;
 }
 
@@ -115,12 +113,18 @@ p.registerPassword {
   .recipe {
     display: none;
   }
+  .showRecipe {
+    display: table-cell;
+  }
   #favoriteButton {
     font-size: 10px;
     float: left;
   }
   .checksearch {
-    float: left;
+    margin-right: 5px;
+  }
+  .cocktailName {
+    text-decoration: underline;
   }
   .showEdit {
     display: block;
@@ -131,6 +135,7 @@ p.registerPassword {
   }
   .edit {
     display: none;
+    text-decoration: underline;
   }
   .footerButtons {
     max-width: 40%;
