@@ -87,7 +87,7 @@ router.post('/myFavorites', (req, res) => {
             where: { name: req.body.name }
         }).then(cocktail => {
                 user.addCocktails(cocktail).then(relationInfo => {
-                    req.flash('success', 'You have new favorite cocktail(s).')
+                    req.flash('success', 'added to favorites!')
                     res.redirect('/cocktails')
                 })
         })
